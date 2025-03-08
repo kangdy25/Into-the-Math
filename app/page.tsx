@@ -1,101 +1,45 @@
-import Image from 'next/image';
+'use client';
+
+import Header from '@/components/Header';
+import { useRouter } from 'next/navigation';
+
+const subjects = [
+  { name: '기초수학', path: '/basic-mathematics' },
+  { name: '이산수학', path: '/discrete-mathematics' },
+  { name: '선형대수학', path: '/linear-algebra' },
+  { name: '미분적분학', path: '/calculus' },
+  { name: '위상수학', path: '/topology' },
+  { name: '확률과 통계', path: '/probability-statistics' },
+];
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{' '}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen h-full bg-[radial-gradient(circle,_#4459dd_0%,_#01012a_41%,_#0a1147_71%,_#170231_100%)]">
+      <Header />
+      <div className="flex flex-col items-center gap-16 m-5 text-white">
+        <h1 className=" text-7xl text-center font-pretendard-bold text-white mt-32">
+          Into The Mathematics
+        </h1>
+        <p className="w-[900px] leading-10 text-center text-xl font-pretendard-extralight">
+          <b className="text-blue-400 font-pretendard-bold">Mathematics</b> is
+          the language of the universe, a silent symphony where every equation
+          tells a story. It is both the foundation and the infinite horizon of
+          knowledge. With each problem solved, we unlock the mysteries of
+          existence.
+        </p>
+        <div className="my-6 grid grid-cols-3 gap-10">
+          {subjects.map((subject) => (
+            <button
+              key={subject.path}
+              onClick={() => router.push(subject.path)}
+              className="p-3 w-52 h-40 bg-none border border-white text-white rounded-lg shadow-lg font-pretendard-extralight hover:border-blue-400 transition"
+            >
+              {subject.name}
+            </button>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
