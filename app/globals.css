@@ -18,63 +18,63 @@
 
 @font-face {
   font-family: 'PRETENDARD-BLACK';
-  src: url('/fonts/PRETENDARD-BLACK.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-BLACK.OTF') format('opentype');
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-EXTRABOLD';
-  src: url('/fonts/PRETENDARD-EXTRABOLD.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-EXTRABOLD.OTF') format('opentype');
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-BOLD';
-  src: url('/fonts/PRETENDARD-BOLD.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-BOLD.OTF') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-SEMIBOLD';
-  src: url('/fonts/PRETENDARD-SEMIBOLD.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-SEMIBOLD.OTF') format('opentype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-MEDIUM';
-  src: url('/fonts/PRETENDARD-MEDIUM.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-MEDIUM.OTF') format('opentype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-REGULAR';
-  src: url('/fonts/PRETENDARD-REGULAR.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-REGULAR.OTF') format('opentype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-LIGHT';
-  src: url('/fonts/PRETENDARD-LIGHT.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-LIGHT.OTF') format('opentype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-EXTRALIGHT';
-  src: url('/fonts/PRETENDARD-EXTRALIGHT.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-EXTRALIGHT.OTF') format('opentype');
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PRETENDARD-THIN';
-  src: url('/fonts/PRETENDARD-THIN.OTF') format('opentype');
+  src: url('@/asset/fonts/PRETENDARD-THIN.OTF') format('opentype');
   font-weight: 100;
   font-style: normal;
 }
