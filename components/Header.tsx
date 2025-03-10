@@ -87,7 +87,7 @@ const Header = () => {
             alt="github"
             className="size-7 dark:bg-white dark:rounded-full"
             onClick={() => {
-              router.push('https://github.com/kangdy25/Into-the-Math');
+              window.open('https://github.com/kangdy25/Into-the-Math');
             }}
           />
         </button>

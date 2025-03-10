@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { DarkModeProvider } from '@/context/DarkModeContext';
 
 export const metadata: Metadata = {
   title: 'Into the Math',
@@ -14,9 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <DarkModeProvider>{children}</DarkModeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
