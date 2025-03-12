@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import IKnow from '@/components/IKnow';
 import Sidebar from '@/components/Sidebar';
 
 export default async function Page({
@@ -17,10 +16,8 @@ export default async function Page({
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="flex flex-col flex-1 border-2 border-indigo-400">
+        <div className="flex flex-col flex-1 border-2 border-indigo-400 px-20 py-10">
           <Post />
-
-          <IKnow />
         </div>
         {/* <TOC /> */}
       </div>
@@ -29,7 +26,11 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  return [{ slug: 'welcome' }, { slug: 'hello' }];
+  return [
+    { slug: 'welcome' },
+    { slug: 'hello' },
+    { slug: 'introduction-discretemath' },
+  ];
 }
 
 export const dynamicParams = false;

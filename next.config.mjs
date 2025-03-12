@@ -1,20 +1,29 @@
 import nextMDX from '@next/mdx';
-// import rehypeCodeTitles from 'rehype-code-titles';
-// import rehypePrism from 'rehype-prism-plus';
+import rehypePrettyCode from 'rehype-pretty-code';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 const withMDX = nextMDX({
-  extension: /\.mdx?$/,
+  extension: /\.mdx$/, // .mdx 확장자 파일을 처리
   options: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    remarkPlugins: [remarkMath], // 수학 관련 기능 추가
+    rehypePlugins: [
+      rehypeKatex, // KaTeX 수식 렌더링
+      [
+        rehypePrettyCode,
+        {
+          // Pretty Code 스타일링
+          theme: 'one-dark-pro', // 하이라이팅 테마 설정
+          emptyStyle: false, // 빈 코드 블록에 대한 스타일 적용 여부
+        },
+      ],
+    ],
   },
 });
 
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  reactStrictMode: true,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'], // 페이지 확장자
+  reactStrictMode: true, // React Strict 모드 활성화
 };
 
 export default withMDX(nextConfig);
