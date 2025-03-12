@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Sidebar() {
   const files = fs.readdirSync(
-    path.join(process.cwd(), '/content/basic-mathematics'),
+    path.join(process.cwd(), '/posts/basic-mathematics'),
   );
   const pages = files.map((file) => file.replace('.mdx', ''));
 

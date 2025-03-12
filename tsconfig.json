@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // 프로젝트 루트를 기준으로 설정
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -27,8 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "next.config.mjs",
-    "next.config.mjs"
+    "next.config.js",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }

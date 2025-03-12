@@ -9,7 +9,7 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const { default: Post } = await import(
-    `@/content/basic-mathematics/${slug}.mdx`
+    `@/posts/basic-mathematics/${slug}.mdx`
   );
 
   return (
@@ -29,7 +29,7 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  return [{ slug: 'welcome' }, { slug: 'function' }];
+  return [{ slug: 'welcome' }, { slug: 'hello' }];
 }
 
 export const dynamicParams = false;
