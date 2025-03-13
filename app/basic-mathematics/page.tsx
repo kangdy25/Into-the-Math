@@ -11,7 +11,6 @@ const page = () => {
         <div className="flex flex-col flex-1 border-2 border-indigo-400">
           샬롬
         </div>
-        {/* <TOC /> */}
       </div>
     </div>
   );
