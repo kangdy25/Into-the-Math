@@ -4,9 +4,12 @@ import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import { serialize } from 'next-mdx-remote/serialize';
+import rehypePrettyCode from 'rehype-pretty-code';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
+import { useMDXComponents } from '@/mdx-components';
 
 export default async function Page({
   params,
@@ -14,9 +17,6 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { default: Post } = await import(
-    `@/posts/basic-mathematics/${slug}.mdx`
-  );
   const filePath = path.join(
     process.cwd(),
     `posts/basic-mathematics/${slug}.mdx`,
@@ -38,7 +38,6 @@ export default async function Page({
       '📜 Extracted Content (first 100 chars):',
       content.substring(0, 100),
     );
-    const mdxSource = await serialize(content, { parseFrontmatter: true });
 
     return (
       <>
@@ -46,8 +45,27 @@ export default async function Page({
         <div className="flex">
           <Sidebar />
           <div className="flex flex-col flex-1 border-2 border-indigo-400 px-20 py-10">
-            <h1>{data.title ?? '제목 없음'}</h1>
-            {/* <MDXRemote source={mdxSource} /> */}
+            {/* <h1>{data.title ?? '제목 없음'}</h1> */}
+            <MDXRemote
+              source={content}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [remarkMdxFrontmatter, remarkGfm, remarkMath],
+                  rehypePlugins: [
+                    rehypeKatex, // KaTeX 수식 렌더링
+                    [
+                      rehypePrettyCode,
+                      {
+                        // Pretty Code 스타일링
+                        theme: 'one-dark-pro', // 하이라이팅 테마 설정
+                        emptyStyle: false, // 빈 코드 블록에 대한 스타일 적용 여부
+                      },
+                    ],
+                  ],
+                },
+              }}
+              components={useMDXComponents({})}
+            />
           </div>
         </div>
       </>
