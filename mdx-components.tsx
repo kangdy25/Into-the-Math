@@ -94,7 +94,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           fontFamily: 'PRETENDARD',
           fontSize: '16px',
           lineHeight: '1.6',
-          marginBottom: '1rem',
         }}
       >
         {children}
@@ -154,11 +153,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     blockquote: ({ children }) => (
       <blockquote
         style={{
-          borderLeft: '4px solid #ccc',
+          display: 'flex',
+          alignItems: 'center',
+          borderLeft: '7px solid #ccc',
+          margin: '1rem',
           paddingLeft: '1rem',
-          marginLeft: '1rem',
-          fontStyle: 'italic',
-          marginBottom: '1rem',
+          paddingTop: '0.5rem',
+          paddingBottom: '0.5rem',
         }}
       >
         {children}

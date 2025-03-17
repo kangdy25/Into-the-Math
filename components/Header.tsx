@@ -41,7 +41,13 @@ const Header = () => {
             src={theme === 'light' ? blackLogo.src : whiteLogo.src}
             alt="logo"
           />
-          <h3 className="text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white">
+          <h3
+            className="text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white
+          "
+            onClick={() => {
+              router.push('/');
+            }}
+          >
             Into the Math
           </h3>
         </div>

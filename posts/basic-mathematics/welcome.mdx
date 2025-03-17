@@ -16,12 +16,26 @@ desc: '이차함수는 ax² + bx + c 형태의 함수입니다.'
 
 ## 예제 코드
 
-```js
-const a = 2;
-const b = 3;
-const c = 5;
-console.log(`y = ${a}x² + ${b}x + ${c}`);
+```typescript
+interface Options {
+  grid?: boolean;
+  theme?: Theme | Record<string, Theme>;
+  keepBackground?: boolean;
+  bypassInlineCode?: boolean;
+  defaultLang?: string | { block?: string; inline?: string };
+  tokensMap?: Record<string, string>;
+  transformers?: ShikiTransformer[];
+  filterMetaString?(str: string): string;
+  getHighlighter?(options: BundledHighlighterOptions): Promise<Highlighter>;
+  onVisitLine?(element: LineElement): void;
+  onVisitHighlightedLine?(element: LineElement): void;
+  onVisitHighlightedChars?(element: CharsElement, id: string | undefined): void;
+  onVisitTitle?(element: Element): void;
+  onVisitCaption?(element: Element): void;
+}
 ```
+
+## 수식
 
 Inline 수식: $ E = mc^2 $
 
