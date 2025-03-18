@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 import BlockMath from './components/BlockMath';
+import Callout from './components/Callout';
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -9,7 +10,6 @@ import BlockMath from './components/BlockMath';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    // Customize heading components
     h1: ({ children }) => (
       <h1
         style={{
@@ -88,7 +88,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </h6>
     ),
-    // Customize paragraph component
     p: ({ children }) => (
       <p
         style={{
@@ -100,7 +99,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </p>
     ),
-    // Customize unordered list
     ul: ({ children }) => (
       <ul
         style={{
@@ -111,7 +109,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </ul>
     ),
-    // Customize ordered list
     ol: ({ children }) => (
       <ol
         style={{
@@ -122,7 +119,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </ol>
     ),
-    // Customize list item
     li: ({ children }) => (
       <li
         style={{
@@ -134,7 +130,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </li>
     ),
-    // Customize inline code
     code: ({ children }) => (
       <pre
         style={{
@@ -150,7 +145,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </pre>
     ),
-    // Customize blockquote
     blockquote: ({ children }) => (
       <blockquote
         style={{
@@ -166,7 +160,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </blockquote>
     ),
-    // Customize image component
     img: (props) => (
       <Image
         sizes="100vw"
@@ -178,7 +171,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...(props as ImageProps)}
       />
     ),
-    // Customize link component
     a: ({ children, href }) => (
       <a
         href={href}
@@ -192,7 +184,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </a>
     ),
-    // Customize horizontal rule
     hr: () => (
       <hr
         style={{
@@ -202,7 +193,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         }}
       />
     ),
-    // Customize task list checkbox
     input: (props) => (
       <input
         type="checkbox"
@@ -212,7 +202,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+
+    // Add custom Components 
     BlockMath,
+    Callout,
+    
     // Spread custom components if provided
     ...components,
   };
