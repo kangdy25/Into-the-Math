@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
+import BlockMath from './components/BlockMath';
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -211,6 +212,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+    BlockMath,
     // Spread custom components if provided
     ...components,
   };
