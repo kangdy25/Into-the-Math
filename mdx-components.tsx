@@ -103,7 +103,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ul
         style={{
           marginLeft: '1.5rem',
+          marginTop: '0.5rem',
           marginBottom: '1rem',
+          listStyleType: 'circle',
+          
         }}
       >
         {children}
@@ -113,7 +116,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ol
         style={{
           marginLeft: '1.5rem',
+          marginTop: '0.5rem',
           marginBottom: '1rem',
+          listStyleType: 'decimal',
         }}
       >
         {children}

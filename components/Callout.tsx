@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Callout = ({ type, children } : any) => {
+const Callout = ({ type, title, children } : any) => {
     
   let info = '';
   let calloutStyle = '';
@@ -40,8 +40,9 @@ const Callout = ({ type, children } : any) => {
         <div className=''>
           <span className="text-md mr-2">{icon}</span>
           <span className={`text-lg font-pretendard-bold ${color}`}>{info}</span>
+        <span className={`text-md mx-3 font-pretendard ${color}0`}>{title}</span>
         </div>
-      <div className="flex-1 font-pretendard-light text-base pl-2 text-slate-900 dark:text-white">{children}</div>
+      <div className="flex-1 font-pretendard-light leading-[1.75] text-base pl-2 text-slate-900 dark:text-white">{children}</div>
     </div>
   );
 };
