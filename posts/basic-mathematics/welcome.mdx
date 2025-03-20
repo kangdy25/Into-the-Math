@@ -2,6 +2,9 @@
 title: '이차함수'
 date: 2025-03-12
 desc: '이차함수는 ax² + bx + c 형태의 함수입니다.'
+category: "1. 소개"
+subCategory: "이산수학"
+order: 2
 ---
 
 import BlockMath from './components/BlockMath';
@@ -16,6 +19,13 @@ import BlockMath from './components/BlockMath';
 
 이차함수의 그래프는 **포물선**입니다.
 
+## 수식
+
+Inline 수식: $ E = mc^2 $
+
+<BlockMath>$$ f'(a) = \lim\limits_{h \rightarrow 0} \frac{f(a+h)-f(a)}{h} $$</BlockMath>
+
+
 ## 예제 코드
 
 ```typescript
@@ -23,22 +33,11 @@ interface Options {
   grid?: boolean;
   theme?: Theme | Record<string, Theme>;
   keepBackground?: boolean;
-  bypassInlineCode?: boolean;
-  defaultLang?: string | { block?: string; inline?: string };
-  tokensMap?: Record<string, string>;
   transformers?: ShikiTransformer[];
   filterMetaString?(str: string): string;
   getHighlighter?(options: BundledHighlighterOptions): Promise<Highlighter>;
   onVisitLine?(element: LineElement): void;
-  onVisitHighlightedLine?(element: LineElement): void;
-  onVisitHighlightedChars?(element: CharsElement, id: string | undefined): void;
-  onVisitTitle?(element: Element): void;
-  onVisitCaption?(element: Element): void;
 }
 ```
 
-## 수식
-
-Inline 수식: $ E = mc^2 $
-
-<BlockMath>$$ f'(a) = \lim\limits_{h \rightarrow 0} \frac{f(a+h)-f(a)}{h} $$</BlockMath>
+---

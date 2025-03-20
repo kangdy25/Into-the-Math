@@ -25,7 +25,7 @@ export default async function Page({
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="flex flex-col flex-1 border-2 border-indigo-400 px-20 py-10">
+        <div className="flex flex-col flex-1 border-l-2 px-20 py-10">
           <h1 className="font-pretendard-extrabold text-6xl mb-9">
             {metadata.title ?? '제목 없음'}
           </h1>

@@ -8,7 +8,7 @@ const page = () => {
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="flex flex-col flex-1 border-2 border-indigo-400">
+        <div className="flex flex-col flex-1 ">
           샬롬
         </div>
       </div>

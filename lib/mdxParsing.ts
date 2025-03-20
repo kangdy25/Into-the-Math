@@ -6,6 +6,9 @@ type MdxMetadata = {
   slug: string;
   title: string;
   content: string;
+  category: string;
+  subCategory?: string;
+  order: number;
 };
 
 const POSTS_DIR = path.join(process.cwd(), 'posts/basic-mathematics');
@@ -23,18 +26,50 @@ export function getMdxMetadata(slug: string) {
 
   return {
     slug,
-    content,
     title: data.title || slug.replace('-', ' '),
+    content,
+    category: data.category || '기타',
+    subCategory: data.subCategory || null,
+    order: data.order || 999, 
   };
 }
 
 export function getAllMdxMetadata() {
   const files = fs.readdirSync(POSTS_DIR);
 
-  return files
+  const mdxData = files
     .map((file) => {
       const slug = file.replace('.mdx', '');
       return getMdxMetadata(slug);
     })
-    .filter((item): item is MdxMetadata => item !== null); // null 값 제거
+    .filter(Boolean) ; // null 값 제거
+
+   // 📌 계층 구조 생성
+   const categories: Record<string, Record<string, MdxMetadata[]>> = {};
+
+   mdxData.forEach(({ category, subCategory, ...rest } : any) => {
+     if (!categories[category]) {
+       categories[category] = {};
+     }
+     if (subCategory) {
+       if (!categories[category][subCategory]) {
+         categories[category][subCategory] = [];
+       }
+       categories[category][subCategory].push({ category, subCategory, ...rest });
+     } else {
+       if (!categories[category]['_']) {
+         categories[category]['_'] = [];
+       }
+       categories[category]['_'].push({ category, subCategory, ...rest });
+     }
+   });
+ 
+   // 📌 정렬: order 순으로 정렬
+   Object.keys(categories).forEach((category) => {
+     Object.keys(categories[category]).forEach((subCategory) => {
+       categories[category][subCategory].sort((a, b) => a.order - b.order);
+     });
+   });
+ 
+   return categories;
 }

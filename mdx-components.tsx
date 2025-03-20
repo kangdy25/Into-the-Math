@@ -139,16 +139,22 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <pre
         style={{
           fontFamily: 'd2coding, monospace',
-          padding: '15px',
+          padding: '30px 0 30px 40px',
           border: '1px solid white',
           borderRadius: '10px',
           display: 'block',
           whiteSpace: 'pre-wrap',
           lineHeight: '1.75',
+          maxHeight: '700px',
+          overflow: 'scroll',
+          background: 'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)',
+          scrollbarColor: 'white #333',
+          scrollbarWidth: 'thin',
         }}
       >
         {children}
       </pre>
+      
     ),
     blockquote: ({ children }) => (
       <blockquote
