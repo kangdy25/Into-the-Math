@@ -1,3 +1,5 @@
+// app/basic-mathematics/[...slug]/page.tsx
+
 import { getMdxMetadata } from '@/lib/mdxParsing';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
@@ -9,13 +11,19 @@ import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import { useMDXComponents } from '@/mdx-components';
 
+type PageParams = {
+  slug: string[];
+};
+
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: PageParams;
 }) {
-  const { slug } = await params;
-  const metadata = getMdxMetadata(slug);
+  // 배열로 된 slug를 문자열로 변환
+  const slugPath = (await params).slug.join('/');
+  
+  const metadata = getMdxMetadata(slugPath);
   if (!metadata) {
     return <div>404 - 페이지를 찾을 수 없습니다.</div>;
   }
@@ -53,4 +61,14 @@ export default async function Page({
       </div>
     </>
   );
+}
+
+// 가능한 모든 경로 생성 (정적 생성용)
+export async function generateStaticParams() {
+  const { getAllSlugs } = await import('@/lib/mdxParsing');
+  const slugs = getAllSlugs();
+  
+  return slugs.map(slug => ({
+    slug: slug.split('/')
+  }));
 }
