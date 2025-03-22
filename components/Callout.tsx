@@ -10,25 +10,25 @@ const Callout = ({ type, title, children } : any) => {
   switch (type) {
     
     case 'tip':
-      info= 'tip';
+      info= 'TIP!';
       calloutStyle = 'bg-teal-50 border-l-7 border-teal-500';
       icon = '💡';
       color = 'text-teal-500';
       break;
     case 'warning':
-      info= 'warning';
+      info= 'WARNING!';
       calloutStyle = 'bg-yellow-50 border-l-7 border-yellow-500';
       icon = '⚠️';
       color = 'text-yellow-500';
       break;
     case 'danger':
-      info= 'danger';
+      info= 'DANGER!';
       calloutStyle = 'bg-red-50 border-l-7 border-red-500';
       icon = '💥';
       color = 'text-red-500';
       break;
     default:
-      info= 'note';
+      info= 'NOTE!';
       calloutStyle = 'bg-indigo-50 border-l-7  border-blue-500';
       icon = '🔔';
       color = 'text-blue-500';

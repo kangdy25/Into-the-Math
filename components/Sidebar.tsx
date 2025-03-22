@@ -2,21 +2,27 @@ import Link from 'next/link';
 import { getAllMdxMetadata } from '@/lib/mdxParsing';
 
 export default function Sidebar() {
-  const categories = getAllMdxMetadata();
+  const { categories, displayNameMap } = getAllMdxMetadata();
 
   return (
     <aside className="sidebar h-full w-[350px] pl-16">
       <Link href={'/basic-mathematics'}>
-        <h2 className="font-pretendard-bold text-xl leading-[1.5] text-center mt-8 pb-8 whitespace-pre-line hover:text-gray-400 border-b-2">
-          기초수학<br/>(Basic Mathematics)
+        <div className='flex flex-col justify-center items-center gap-2 font-pretendard-bold border-b-2 py-8 mt-2 hover:text-indigo-300'>
+        <h2 className=" text-2xl">
+          기초수학
         </h2>
+        <span className='text-lg'>(Basic Mathematics)</span>
+        </div>
       </Link>
       <ul>
         {Object.entries(categories)
           .sort(([a], [b]) => a.localeCompare(b, 'ko', { numeric: true }))
           .map(([category, pages]) => (
             <li key={category}>
-              <h3 className="font-pretendard-medium text-xl my-5 pl-2 pt-3 dark:text-slate-300">{category}</h3>
+              {/* 카테고리 이름에 displayNameMap 적용 */}
+              <h3 className="font-pretendard-medium text-xl my-5 pl-2 pt-3 dark:text-slate-300">
+                {displayNameMap[category] || category}
+              </h3>
               <ul>
                 {pages.map(({ slug, title }) => (
                   <li
