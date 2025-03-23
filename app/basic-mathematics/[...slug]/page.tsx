@@ -1,5 +1,3 @@
-// app/basic-mathematics/[...slug]/page.tsx
-
 import { getMdxMetadata } from '@/lib/mdxParsing';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
@@ -10,6 +8,7 @@ import rehypeKatex from 'rehype-katex';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import { useMDXComponents } from '@/mdx-components';
+import Comments from "components/Comments";
 
 type PageParams = {
   slug: string[];
@@ -57,6 +56,7 @@ export default async function Page({
             }}
             components={useMDXComponents({})}
           />
+          <Comments />
         </div>
       </div>
     </>

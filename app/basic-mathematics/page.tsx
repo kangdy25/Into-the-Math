@@ -8,6 +8,7 @@ import rehypeKatex from 'rehype-katex';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import { useMDXComponents } from '@/mdx-components';
+import Comments from '@/components/Comments';
 
 export default async function Page() {
   // index.mdx 로드
@@ -45,6 +46,7 @@ export default async function Page() {
             }}
             components={useMDXComponents({})}
           />
+          <Comments />
         </div>
       </div>
     </>
