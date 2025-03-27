@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
-import SubjectBtn from '@/components/SubjectBtn';
+import Header from '@/components/ui/Header';
+import SubjectBtn from '@/components/ui/SubjectBtn';
 
 export default function Home() {
   return (

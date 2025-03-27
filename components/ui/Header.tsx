@@ -35,6 +35,7 @@ const Header = () => {
   return (
     <div className="w-full h-16  border-b border-gray-700 px-7 py-10  flex items-center justify-between text-black dark:text-white dark:border-gray-400">
       <div className="flex w-100 gap-8 items-center">
+        {/* Logo */}
         <div className="flex items-center">
           <img
             className="size-14 p-0 m-0"
@@ -51,12 +52,15 @@ const Header = () => {
             Into the Math
           </h3>
         </div>
+
+        {/* 검색 버튼 */}
         <button className="border-1 px-5 py-3 w-40 flex justify-start items-center border-gray-600 dark:border-gray-400 rounded-lg cursor-pointer dark:hover:border-gray-200 ">
           <FontAwesomeIcon className="text-gray-400" icon={faMagnifyingGlass} />
           <span className="mx-3 text-gray-400">검색</span>
         </button>
       </div>
 
+      {/* 홈 버튼 */}
       <div className="flex font-pretendard text-lg gap-7">
         <button
           className="text-slate-800 dark:text-slate-300 cursor-pointer dark:hover:text-white"
@@ -67,6 +71,7 @@ const Header = () => {
           홈
         </button>
 
+        {/* 번역 버튼 */}
         <button className="cursor-pointer">
           <img
             src={translate.src}
@@ -76,6 +81,7 @@ const Header = () => {
           />
         </button>
 
+        {/* 다크모드 버튼 */}
         <button
           onClick={toggleTheme}
           className="p-2 text-xl rounded-full cursor-pointer dark:bg-gray-800 transition"
@@ -87,6 +93,7 @@ const Header = () => {
           )}
         </button>
 
+        {/* Github 버튼 */}
         <button className="text-slate-300 cursor-pointer hover:text-white">
           <img
             src={githubBlack.src}

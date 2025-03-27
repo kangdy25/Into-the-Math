@@ -1,5 +1,3 @@
-// lib/mdxParsing.ts
-
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -13,7 +11,7 @@ type MdxMetadata = {
   displayCategory?: string;
 };
 
-const POSTS_DIR = path.join(process.cwd(), 'posts/basic-mathematics');
+const POSTS_DIR = path.join(process.cwd(), 'posts');
 
 // 카테고리 이름 포맷팅
 export function formatCategoryName(category: string): string {
