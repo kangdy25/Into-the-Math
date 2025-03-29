@@ -14,7 +14,7 @@ export default function Sidebar({ category }: { category: string }) {
     .sort(([a], [b]) => a.localeCompare(b, 'ko', { numeric: true }));
 
   return (
-    <aside className="sidebar h-full w-[350px] pl-16">
+    <aside className="sidebar border-r-2 w-[350px] pl-16">
       <Link href={`/${category}`}>
         <div className='flex flex-col justify-center items-center gap-2 font-pretendard-bold border-b-2 py-8 mt-2 hover:text-indigo-300'>
           <h2 className="text-2xl">{currentSubject?.name}</h2>

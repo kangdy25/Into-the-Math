@@ -30,7 +30,8 @@ export default function MathPageLayout({
       <Header />
       <div className="flex">
         <Sidebar category={category} />
-        <div className="flex flex-col flex-1 border-l-2 px-20 py-10">
+        <div className="flex flex-1 items-center flex-col">
+        <div className="w-[1000px] px-20 py-10">
           <h1 className="font-pretendard-extrabold text-6xl mb-9">
             {metadata.title ?? '제목 없음'}
           </h1>
@@ -54,6 +55,7 @@ export default function MathPageLayout({
             components={useMDXComponents({})}
           />
           <Comments />
+        </div>
         </div>
       </div>
     </>
