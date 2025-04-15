@@ -2,18 +2,14 @@ import { getMdxMetadata } from '@/lib/mdxParsing';
 import { getSubjectBySlug } from '@/constants/subject';
 import MathPageLayout from '@/components/ui/MathPageLayout';
 
-type PageParams = {
+type PageParams = Promise<{
   category: string;
   slug: string[];
-};
+}>;
 
-export default async function Page({
-  params,
-}: {
-  params: PageParams;
-}) {
+export default async function Page({ params }: { params: PageParams }) {
   const { category, slug } = await params;
-  
+
   // 카테고리 검증
   const subjectInfo = getSubjectBySlug(category);
   if (!subjectInfo) {
@@ -31,12 +27,12 @@ export default async function Page({
 export async function generateStaticParams() {
   const { getAllSlugs } = await import('@/lib/mdxParsing');
   const slugs = getAllSlugs();
-  
-  return slugs.map(slug => {
+
+  return slugs.map((slug) => {
     const [category, ...rest] = slug.split('/');
     return {
       category,
-      slug: rest
+      slug: rest,
     };
   });
 }

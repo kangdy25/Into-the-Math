@@ -40,9 +40,9 @@ const Callout = ({ type, title, children } : any) => {
         <div className=''>
           <span className="text-md mr-2">{icon}</span>
           <span className={`text-lg font-pretendard-bold ${color}`}>{info}</span>
-        <span className={`text-md mx-3 font-pretendard ${color}0`}>{title}</span>
+        <span className={`text-md mx-3 font-pretendard-bold ${color}0`}>{title}</span>
         </div>
-      <div className="flex-1 font-pretendard-light leading-[1.75] text-base pl-2 text-slate-900 dark:text-white">{children}</div>
+      <div className="font-pretendard dark:border-white leading-[1.75] text-base  text-slate-900 dark:text-white">{children}</div>
     </div>
   );
 };

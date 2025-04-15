@@ -2,13 +2,13 @@ import { getMdxMetadata } from '@/lib/mdxParsing';
 import { getSubjectBySlug } from '@/constants/subject';
 import MathPageLayout from '@/components/ui/MathPageLayout';
 
-export default async function Page({ 
-  params 
-}: { 
-  params: { category: string } 
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  
+
   // 카테고리 검증
   const subjectInfo = getSubjectBySlug(category);
   if (!subjectInfo) {

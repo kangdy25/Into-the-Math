@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 import BlockMath from './components/posts/BlockMath';
+import Toggle from './components/posts/Toggle';
 import Callout from './components/posts/Callout';
 
 // This file allows you to provide custom React components
@@ -106,7 +107,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           marginTop: '0.5rem',
           marginBottom: '1rem',
           listStyleType: 'circle',
-          
         }}
       >
         {children}
@@ -147,14 +147,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           lineHeight: '1.75',
           maxHeight: '700px',
           overflow: 'scroll',
-          background: 'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)',
+          background:
+            'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)',
           scrollbarColor: 'white #333',
           scrollbarWidth: 'thin',
         }}
       >
         {children}
       </pre>
-      
     ),
     blockquote: ({ children }) => (
       <blockquote
@@ -214,10 +214,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // Add custom Components 
+    // Add custom Components
     BlockMath,
     Callout,
-    
+    Toggle,
+
     // Spread custom components if provided
     ...components,
   };
