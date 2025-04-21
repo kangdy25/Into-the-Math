@@ -1,5 +1,3 @@
-import React from 'react';
-
 const levelMap = {
   1: 'text-4xl font-bold',
   2: 'text-2xl font-semibold',

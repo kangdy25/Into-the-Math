@@ -5,9 +5,11 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import Header from '@/components/ui/Header';
-import Sidebar from '@/components/ui/Sidebar';
+import SidebarWrapper from '@/components/ui/SidebarWrapper';
 import { useMDXComponents } from '@/mdx-components';
 import Comments from '@/components/posts/Comments';
+import ClientLayout from './ClientLayout';
+
 interface MathPageLayoutProps {
   metadata: {
     title?: string;
@@ -25,38 +27,36 @@ export default function MathPageLayout({
   }
 
   return (
-    <>
+    <ClientLayout>
       <Header />
-      <div className="flex">
-        <Sidebar category={category} />
-        <div className="flex flex-1 items-center flex-col">
-          <div className="w-[1000px] px-20 py-10">
-            <h1 className="font-pretendard-extrabold text-6xl mb-9">
-              {metadata.title ?? '제목 없음'}
-            </h1>
-            <MDXRemote
-              source={metadata.content}
-              options={{
-                mdxOptions: {
-                  remarkPlugins: [remarkMdxFrontmatter, remarkGfm, remarkMath],
-                  rehypePlugins: [
-                    rehypeKatex,
-                    [
-                      rehypePrettyCode,
-                      {
-                        theme: 'one-dark-pro',
-                        emptyStyle: false,
-                      },
-                    ],
+      <SidebarWrapper category={category} />
+      <div className="flex flex-1 relative top-[81px] items-center flex-col">
+        <div className="max-w-[1000px] w-full px-6 md:px-20 py-10">
+          <h1 className="font-pretendard-extrabold text-4xl md:text-6xl mb-9">
+            {metadata.title ?? '제목 없음'}
+          </h1>
+          <MDXRemote
+            source={metadata.content}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkMdxFrontmatter, remarkGfm, remarkMath],
+                rehypePlugins: [
+                  rehypeKatex,
+                  [
+                    rehypePrettyCode,
+                    {
+                      theme: 'one-dark-pro',
+                      emptyStyle: false,
+                    },
                   ],
-                },
-              }}
-              components={useMDXComponents({})}
-            />
-            <Comments />
-          </div>
+                ],
+              },
+            }}
+            components={useMDXComponents({})}
+          />
+          <Comments />
         </div>
       </div>
-    </>
+    </ClientLayout>
   );
 }

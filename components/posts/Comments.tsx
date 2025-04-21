@@ -23,7 +23,7 @@ const Comments = () => {
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
 
     return () => observer.disconnect();
@@ -32,10 +32,10 @@ const Comments = () => {
   // utterances 로드
   useEffect(() => {
     if (!ref.current) return;
-    
+
     // 기존 댓글 제거 (utterances의 테마는 동적으로 변경 불가능)
     ref.current.innerHTML = '';
-    
+
     // 새 스크립트 생성
     const script = document.createElement('script');
     script.src = 'https://utteranc.es/client.js';
@@ -44,7 +44,7 @@ const Comments = () => {
     script.setAttribute('issue-term', 'pathname');
     script.setAttribute('theme', isDarkMode ? 'github-dark' : 'github-light');
     script.setAttribute('label', 'blog-comment');
-    
+
     ref.current.appendChild(script);
   }, [isDarkMode]);
 

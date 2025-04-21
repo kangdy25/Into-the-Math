@@ -1,3 +1,4 @@
+// "Header.tsx"
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -11,8 +12,15 @@ import {
 } from '@/constants/icons';
 import { useRouter } from 'next/navigation';
 import { sun, moon } from '@/constants/icons';
+import { Menu, X } from 'lucide-react'; // lucide-react 아이콘 사용
 
-const Header = () => {
+interface HeaderProps {
+  isMobile?: boolean;
+  isSidebarOpen?: boolean;
+  toggleSidebar?: () => void;
+}
+
+const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
   const router = useRouter();
 
   // 헤더에서 사용할 다크모드 구현
@@ -33,8 +41,22 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full h-16  border-b border-gray-700 px-7 py-10  flex items-center justify-between text-black dark:text-white dark:border-gray-400">
-      <div className="flex w-100 gap-8 items-center">
+    <div className="fixed top-0 left-0 bg-white dark:bg-black z-10 w-full h-16 border-b border-gray-700 px-7 py-10 flex items-center justify-between text-black dark:text-white dark:border-gray-400">
+      <div className="flex gap-4 items-center">
+        {/* 햄버거 버튼 - 모바일에서만 표시 */}
+        {isMobile && toggleSidebar && (
+          <button
+            onClick={toggleSidebar}
+            className="p-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+            aria-label={isSidebarOpen ? '사이드바 닫기' : '사이드바 열기'}
+          >
+            {isSidebarOpen ? (
+              <X size={24} className="text-gray-700 dark:text-gray-300" />
+            ) : (
+              <Menu size={24} className="text-gray-700 dark:text-gray-300" />
+            )}
+          </button>
+        )}
         {/* Logo */}
         <div className="flex items-center">
           <img
@@ -43,8 +65,7 @@ const Header = () => {
             alt="logo"
           />
           <h3
-            className="text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white
-          "
+            className="text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white"
             onClick={() => {
               router.push('/');
             }}
@@ -54,7 +75,7 @@ const Header = () => {
         </div>
 
         {/* 검색 버튼 */}
-        <button className="border-1 px-5 py-3 w-40 flex justify-start items-center border-gray-600 dark:border-gray-400 rounded-lg cursor-pointer dark:hover:border-gray-200 ">
+        <button className="border-1 px-5 py-3 w-40 flex justify-start items-center border-gray-600 dark:border-gray-400 rounded-lg cursor-pointer dark:hover:border-gray-200">
           <FontAwesomeIcon className="text-gray-400" icon={faMagnifyingGlass} />
           <span className="mx-3 text-gray-400">검색</span>
         </button>
