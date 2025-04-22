@@ -2,8 +2,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import {
   githubBlack,
   blackLogo,
@@ -42,12 +40,12 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
 
   return (
     <div className="fixed top-0 left-0 bg-white dark:bg-black z-10 w-full h-16 border-b border-gray-700 px-7 py-10 flex items-center justify-between text-black dark:text-white dark:border-gray-400">
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-1 sm:gap-4 items-center">
         {/* 햄버거 버튼 - 모바일에서만 표시 */}
         {isMobile && toggleSidebar && (
           <button
             onClick={toggleSidebar}
-            className="p-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+            className=" rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label={isSidebarOpen ? '사이드바 닫기' : '사이드바 열기'}
           >
             {isSidebarOpen ? (
@@ -60,12 +58,12 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
         {/* Logo */}
         <div className="flex items-center">
           <img
-            className="size-14 p-0 m-0"
+            className="size-12 sm:size-14 p-0 m-0"
             src={theme === 'light' ? blackLogo.src : whiteLogo.src}
             alt="logo"
           />
           <h3
-            className="text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white"
+            className="text-xl sm:text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white"
             onClick={() => {
               router.push('/');
             }}
@@ -73,27 +71,12 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
             Into the Math
           </h3>
         </div>
-
-        {/* 검색 버튼 */}
-        <button className="border-1 px-5 py-3 w-40 flex justify-start items-center border-gray-600 dark:border-gray-400 rounded-lg cursor-pointer dark:hover:border-gray-200">
-          <FontAwesomeIcon className="text-gray-400" icon={faMagnifyingGlass} />
-          <span className="mx-3 text-gray-400">검색</span>
-        </button>
       </div>
 
       {/* 홈 버튼 */}
-      <div className="flex font-pretendard text-lg gap-7">
-        <button
-          className="text-slate-800 dark:text-slate-300 cursor-pointer dark:hover:text-white"
-          onClick={() => {
-            router.push('/');
-          }}
-        >
-          홈
-        </button>
-
+      <div className="flex font-pretendard text-lg gap-4 sm:gap-7 ">
         {/* 번역 버튼 */}
-        <button className="cursor-pointer">
+        <button className="cursor-pointer w-full">
           <img
             src={translate.src}
             alt="translate"
@@ -105,7 +88,7 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
         {/* 다크모드 버튼 */}
         <button
           onClick={toggleTheme}
-          className="p-2 text-xl rounded-full cursor-pointer dark:bg-gray-800 transition"
+          className="text-xl w-full rounded-full cursor-pointer dark:bg-gray-800 transition"
         >
           {theme === 'light' ? (
             <img className="size-7" src={moon.src} alt="Moon" />
@@ -115,7 +98,7 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
         </button>
 
         {/* Github 버튼 */}
-        <button className="text-slate-300 cursor-pointer hover:text-white">
+        <button className="hidden sm:block text-slate-300 w-full cursor-pointer hover:text-white">
           <img
             src={githubBlack.src}
             alt="github"

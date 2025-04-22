@@ -23,12 +23,12 @@ export default function ClientSidebar({
     <>
       {/* 사이드바 - 모바일에서는 isSidebarOpen 상태에 따라 표시/숨김 */}
       <aside
-        className={`sidebar top-[81px] border-r-2 w-[350px] pl-16 transition-all duration-300 ease-in-out ${
+        className={`sidebar fixed top-[81px] z-10 h-full border-r-2 w-full sm:w-[350px] pl-12 transition-all duration-300 ease-in-out ${
           isMobile
             ? `fixed left-0 bottom-0 z-40 bg-white dark:bg-black ${
                 isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
               } `
-            : 'relative '
+            : ' '
         }`}
       >
         <Link href={`/${category}`}>

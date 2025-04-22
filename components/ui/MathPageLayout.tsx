@@ -32,7 +32,7 @@ export default function MathPageLayout({
       <SidebarWrapper category={category} />
       <div className="flex flex-1 relative top-[81px] items-center flex-col">
         <div className="max-w-[1000px] w-full px-6 md:px-20 py-10">
-          <h1 className="font-pretendard-extrabold text-4xl md:text-6xl mb-9">
+          <h1 className="font-pretendard-extrabold mt-8 mb-16 text-center text-6xl ">
             {metadata.title ?? '제목 없음'}
           </h1>
           <MDXRemote
