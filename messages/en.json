@@ -1,0 +1,16 @@
+{
+  "main": {
+    "title": "Mathematics",
+    "paragraph": "is the language of the universe, a silent symphony where every equation tells a story. It is both the foundation and the infinite horizon of knowledge. With each problem solved, we unlock the mysteries of existence."
+  },
+  "sidebar": {
+    "기초수학": "기초 수학",
+    "이산수학": "이산 수학",
+    "introduction": "소개",
+    "practice": "연습 문제",
+    "code": "코드 예제",
+    "callout": "요약",
+    "집합": "집합",
+    "함수": "함수"
+  }
+}

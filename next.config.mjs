@@ -1,4 +1,5 @@
 import nextMDX from '@next/mdx';
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const withMDX = nextMDX({
   extension: /\.mdx$/, // .mdx 확장자 파일을 처리
@@ -13,4 +14,6 @@ const nextConfig = {
   },
 };
 
-export default withMDX(nextConfig);
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl(withMDX(nextConfig));

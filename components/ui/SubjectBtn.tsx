@@ -2,9 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import subjects from '@/constants/subject';
+import { useLocale } from 'next-intl';
 
 const SubjectBtn = () => {
   const router = useRouter();
+  const locale = useLocale();
 
   return (
     <div className="w-full max-w-[850px] mt-6 mb-40 flex flex-wrap gap-10 justify-center items-center">
@@ -19,9 +21,9 @@ const SubjectBtn = () => {
             alt={subject.name}
             className="size-16 mb-2"
           />
-          <p>{subject.name}</p>
-          <span className="text-gray-500 dark:text-gray-400 ">
-            {subject.eng}
+          <p>{locale === 'en' ? subject.eng : subject.name}</p>
+          <span className="text-gray-500 text-base dark:text-gray-400">
+            {locale === 'en' ? subject.descriptionEng : subject.descriptionKo}
           </span>
         </button>
       ))}
