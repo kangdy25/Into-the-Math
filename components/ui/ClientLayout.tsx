@@ -12,7 +12,7 @@ export default function ClientLayout({
 
   useEffect(() => {
     const checkScreenSize = () => {
-      const mobile = window.innerWidth <= 1400;
+      const mobile = window.innerWidth <= 1280;
       setIsMobile(mobile);
 
       // 모바일 화면일 때 사이드바 자동으로 닫기

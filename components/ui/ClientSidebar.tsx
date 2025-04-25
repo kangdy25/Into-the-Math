@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 interface ClientSidebarProps {
   category: string;
@@ -19,16 +20,34 @@ export default function ClientSidebar({
   isMobile = false,
   isSidebarOpen = true,
 }: ClientSidebarProps) {
+  // 모바일에서 사이드바 열리면 배경 스크롤 막기
+  useEffect(() => {
+    if (isMobile && isSidebarOpen) {
+      document.body.style.overflow = 'hidden'; // 배경 스크롤 비활성화
+    } else {
+      document.body.style.overflow = ''; // 배경 스크롤 복구
+    }
+
+    // 컴포넌트 언마운트 시 정리
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobile, isSidebarOpen]);
+
   return (
     <>
-      {/* 사이드바 - 모바일에서는 isSidebarOpen 상태에 따라 표시/숨김 */}
+      {/* 사이드바 */}
       <aside
-        className={`sidebar fixed top-[81px] z-10 h-full border-r-2 w-full sm:w-[350px] pl-12 transition-all duration-300 ease-in-out ${
+        style={{
+          scrollbarColor: ' #777 #333 ',
+          scrollbarWidth: 'thin',
+        }}
+        className={`sidebar fixed top-[81px] h-[calc(100vh-81px)] border-r-2 w-full sm:w-[350px] pl-12 transition-all duration-300 ease-in-out overflow-y-auto ${
           isMobile
-            ? `fixed left-0 bottom-0 z-40 bg-white dark:bg-black ${
+            ? `left-0 bottom-0 z-40 bg-white dark:bg-black ${
                 isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
               } `
-            : ' '
+            : ''
         }`}
       >
         <Link href={`/${category}`}>
@@ -39,7 +58,6 @@ export default function ClientSidebar({
         </Link>
         <ul>
           {filteredCategories.map(([categoryKey, pages]) => {
-            // 카테고리명에서 마지막 부분만 추출
             const categoryName =
               displayNameMap[categoryKey]?.split('/').pop() ??
               categoryKey.split('/').pop();
@@ -50,17 +68,15 @@ export default function ClientSidebar({
                   {categoryName}
                 </h3>
                 <ul>
-                  {pages.map(({ slug, title }) => {
-                    return (
-                      <li
-                        key={slug}
-                        className="flex justify-between font-pretendard-light py-2 pl-6 border-l-2 my-0.5 hover:text-indigo-400 hover:border-indigo-400"
-                      >
-                        <Link href={`/${slug}`}>{title}</Link>
-                        <span className="mr-6">&gt;</span>
-                      </li>
-                    );
-                  })}
+                  {pages.map(({ slug, title }) => (
+                    <li
+                      key={slug}
+                      className="flex justify-between font-pretendard-light py-2 pl-6 border-l-2 my-0.5 hover:text-indigo-400 hover:border-indigo-400"
+                    >
+                      <Link href={`/${slug}`}>{title}</Link>
+                      <span className="mr-6">&gt;</span>
+                    </li>
+                  ))}
                 </ul>
               </li>
             );
@@ -68,14 +84,9 @@ export default function ClientSidebar({
         </ul>
       </aside>
 
-      {/* 모바일에서 사이드바가 열렸을 때 배경 오버레이 */}
+      {/* 모바일 오버레이 */}
       {isMobile && isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 top-[81px] opacity-70"
-          onClick={() => {
-            // 클릭 이벤트 무시 (상위 컴포넌트에서 처리)
-          }}
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-30 top-[81px] opacity-70" />
       )}
     </>
   );

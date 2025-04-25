@@ -30,7 +30,7 @@ export default function MathPageLayout({
     <ClientLayout>
       <Header />
       <SidebarWrapper category={category} />
-      <div className="flex flex-1 relative top-[81px] items-center flex-col">
+      <div className="flex flex-1 relative top-[81px] xl:ml-[350px] items-center flex-col">
         <div className="max-w-[1000px] w-full px-6 md:px-20 py-10">
           <h1 className="font-pretendard-extrabold mt-8 mb-16 text-center text-6xl ">
             {metadata.title ?? '제목 없음'}
