@@ -4,31 +4,33 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 
 interface ClientSidebarProps {
+  locale: 'en' | 'ko';
   category: string;
   currentSubject: any;
   filteredCategories: [string, any[]][];
   displayNameMap: Record<string, string>;
+  translateNames: Record<string, { en: string; ko: string }>;
   isMobile?: boolean;
   isSidebarOpen?: boolean;
 }
 
 export default function ClientSidebar({
+  locale,
   category,
   currentSubject,
   filteredCategories,
   displayNameMap,
+  translateNames,
   isMobile = false,
   isSidebarOpen = true,
 }: ClientSidebarProps) {
   // 모바일에서 사이드바 열리면 배경 스크롤 막기
   useEffect(() => {
     if (isMobile && isSidebarOpen) {
-      document.body.style.overflow = 'hidden'; // 배경 스크롤 비활성화
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = ''; // 배경 스크롤 복구
+      document.body.style.overflow = '';
     }
-
-    // 컴포넌트 언마운트 시 정리
     return () => {
       document.body.style.overflow = '';
     };
@@ -46,26 +48,39 @@ export default function ClientSidebar({
           isMobile
             ? `left-0 bottom-0 z-40 bg-white dark:bg-black ${
                 isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-              } `
+              }`
             : ''
         }`}
       >
         <Link href={`/${category}`}>
           <div className="flex flex-col justify-center items-center gap-2 font-pretendard-bold border-b-2 py-8 mt-2 hover:text-indigo-300">
-            <h2 className="text-2xl">{currentSubject?.name}</h2>
-            <span className="text-lg">({currentSubject?.eng})</span>
+            <h2 className={`${locale === 'en' ? 'text-2xl' : 'text-3xl'}`}>
+              {locale === 'en' ? currentSubject?.eng : currentSubject?.name}
+            </h2>
+            <span
+              className={`text-lg ${locale === 'en' ? 'hidden ' : 'block'}`}
+            >
+              ({currentSubject?.eng})
+            </span>
           </div>
         </Link>
+
         <ul>
           {filteredCategories.map(([categoryKey, pages]) => {
-            const categoryName =
+            const lastFolder =
               displayNameMap[categoryKey]?.split('/').pop() ??
               categoryKey.split('/').pop();
+
+            const cleanLastFolder = lastFolder?.replace(/\.mdx$/, '') ?? '';
+
+            // 번역 이름 가져오기
+            const translatedCategoryName =
+              cleanLastFolder && translateNames[cleanLastFolder]?.[locale];
 
             return (
               <li key={categoryKey}>
                 <h3 className="font-pretendard-medium text-xl my-5 pl-2 pt-3 dark:text-slate-300">
-                  {categoryName}
+                  {translatedCategoryName}
                 </h3>
                 <ul>
                   {pages.map(({ slug, title }) => (

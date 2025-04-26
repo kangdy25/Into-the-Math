@@ -12,5 +12,9 @@
     "callout": "요약",
     "집합": "집합",
     "함수": "함수"
+  },
+  "subject": {
+    "Basic-Mathematics": "기초수학",
+    "Discrete-Mathematics": "이산수학"
   }
 }

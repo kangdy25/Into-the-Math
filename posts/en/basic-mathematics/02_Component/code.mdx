@@ -1,0 +1,96 @@
+---
+title: 'Code Block'
+date: 2025-03-20
+category: '2. 컴포넌트'
+order: 1
+---
+
+# Code Block
+
+지금부터 본격적으로 스택을 구현해보도록 하겠습니다.
+
+<br />
+
+스택을 구현하기 위해서는 여러가지 연산을 구현해야 합니다. 실제로 먼저 스택을 정의해야하고, push 연산, pop 연산 그리고 스택이 비어있는지 확인하는 empty 연산, 스택이 가득 찼는지 확인하는 full 연산, 스택의 가장 맨 위 요소를 반환하는 peek 연산이 필요합니다.
+
+<br />
+
+스택을 구현하기 전 필요한 것들을 확인했으니 지금부터 c언어를 통해서 스택을 구현하겠습니다.
+
+<br />
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// ========== 스택 코드 시작 ==========
+#define MAX_STACK_SIZE 100
+
+// 스택이 구조체로 정의된다.
+typedef int element;
+typedef struct {
+	element data[MAX_STACK_SIZE];
+	int top;
+} StackType;
+
+// 스택 초기화 함수
+void init_stack(StackType *s) {
+	s->top = -1;
+}
+
+// 모든 연산은 구조체의 포인터를 받는다.
+
+// 공백 상태 검출 함수
+int is_empty(StackType *s) {
+	return (s->top == -1);
+}
+
+// 포화 상태 검출 함수
+int is_full(StackType *s) {
+	return (s->top == (MAX_STACK_SIZE - 1));
+}
+
+// 삽입 함수
+void push(StackType *s, element item) {
+	if (is_full(s)) {
+		fprintf(stderr, "스택 포화 에러\n");
+		return;
+	}
+	else s->data[++(s->top)] = item;
+}
+
+// 삭제 함수
+element pop(StackType *s) {
+	if (is_empty(s)) {
+		fprintf(stderr, "스택 공백 에러\n");
+		exit(1);
+	}
+	else return s->data[(s->top)--];
+}
+
+// 피크 함수
+element peek(StackType *s) {
+	if (is_empty(s)) {
+		fprintf(stderr, "스택 공백 에러\n");
+		exit(1);
+	}
+	else return s->data[s->top];
+}
+// ========== 스택 코드의 끝 ==========
+
+int main() {
+	StackType s;
+	// 스택을 동적으로 생성한다.
+	// s = (StackType *)malloc(sizeof(StackType));
+	init_stack(&s);
+	push(&s, 1);
+	push(&s, 2);
+	push(&s, 3);
+	printf("%d\n", pop(&s));
+	printf("%d\n", pop(&s));
+	printf("%d\n", pop(&s));
+	// 동적 메모리는 반드시 반환한다.
+	// free(s);
+	return 0;
+}
+```

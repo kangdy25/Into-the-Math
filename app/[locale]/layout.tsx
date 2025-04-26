@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { ReactNode } from 'react';
-import { notFound } from 'next/navigation';
 
 import '../globals.css';
 import 'katex/dist/katex.min.css';

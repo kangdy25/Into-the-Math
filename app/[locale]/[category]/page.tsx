@@ -5,9 +5,9 @@ import MathPageLayout from '@/components/ui/MathPageLayout';
 export default async function Page({
   params,
 }: {
-  params: Promise<{ category: string }>;
+  params: Promise<{ locale: 'en' | 'ko'; category: string }>;
 }) {
-  const { category } = await params;
+  const { locale, category } = await params;
 
   // 카테고리 검증
   const subjectInfo = getSubjectBySlug(category);
@@ -16,7 +16,9 @@ export default async function Page({
   }
 
   // index.mdx 로드
-  const metadata = getMdxMetadata(`${category}/index`);
+  const metadata = getMdxMetadata(locale, `${category}/index`);
 
-  return <MathPageLayout metadata={metadata} category={category} />;
+  return (
+    <MathPageLayout locale={locale} metadata={metadata} category={category} />
+  );
 }
