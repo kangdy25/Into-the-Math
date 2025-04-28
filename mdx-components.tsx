@@ -4,91 +4,118 @@ import BlockMath from './components/posts/BlockMath';
 import Toggle from './components/posts/Toggle';
 import Callout from './components/posts/Callout';
 
-// This file allows you to provide custom React components
-// to be used in MDX files. You can import and use any
-// React component you want, including inline styles,
-// components from other libraries, and more.
+// ID 생성을 위한 헬퍼 함수
+const createHeadingId = (children: React.ReactNode): string => {
+  // children이 문자열인지 확인
+  if (typeof children === 'string') {
+    return children
+      .toLowerCase()
+      .replace(/\s+/g, '-') // 공백을 하이픈으로 변환
+      .replace(/[?!.,]/g, ''); // 특수문자 제거
+  }
+
+  // children이 복잡한 React 노드인 경우 (예: 강조, 링크 등이 포함된 경우)
+  // toString을 시도하고 실패하면 빈 문자열 반환
+  try {
+    return (children as string)
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[?!.,]/g, '');
+  } catch (e) {
+    console.warn('Could not generate ID for heading:', children);
+    return '';
+  }
+};
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: ({ children }) => (
-      <h1
-        style={{
-          fontFamily: 'PRETENDARD',
-          fontSize: '40px',
-          fontWeight: '700',
-          marginTop: '20px',
-          marginBottom: '20px',
-        }}
-      >
-        {children}
-      </h1>
-    ),
-    h2: ({ children }) => (
-      <h2
-        style={{
-          fontFamily: 'PRETENDARD',
-          fontSize: '28px',
-          fontWeight: '600',
-          marginTop: '15px',
-          marginBottom: '15px',
-        }}
-      >
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3
-        style={{
-          fontFamily: 'PRETENDARD',
-          fontSize: '24px',
-          fontWeight: '500',
-          marginTop: '10px',
-          marginBottom: '10px',
-        }}
-      >
-        {children}
-      </h3>
-    ),
-    h4: ({ children }) => (
-      <h4
-        style={{
-          fontFamily: 'PRETENDARD',
-          fontSize: '20px',
-          fontWeight: '400',
-          marginTop: '10px',
-          marginBottom: '10px',
-        }}
-      >
-        {children}
-      </h4>
-    ),
-    h5: ({ children }) => (
-      <h5
-        style={{
-          fontFamily: 'PRETENDARD',
-          fontSize: '18px',
-          fontWeight: '400',
-          marginTop: '10px',
-          marginBottom: '10px',
-        }}
-      >
-        {children}
-      </h5>
-    ),
-    h6: ({ children }) => (
-      <h6
-        style={{
-          fontFamily: 'PRETENDARD',
-          fontSize: '16px',
-          fontWeight: '400',
-          marginTop: '10px',
-          marginBottom: '10px',
-        }}
-      >
-        {children}
-      </h6>
-    ),
+    h1: ({ children }) => {
+      const id = createHeadingId(children);
+      return (
+        <h2
+          id={id}
+          style={{
+            fontFamily: 'PRETENDARD',
+            fontSize: '40px',
+            fontWeight: '700',
+            marginTop: '20px',
+            marginBottom: '20px',
+          }}
+        >
+          {children}
+        </h2>
+      );
+    },
+    h2: ({ children }) => {
+      const id = createHeadingId(children);
+      return (
+        <h3
+          id={id}
+          style={{
+            fontFamily: 'PRETENDARD',
+            fontSize: '28px',
+            fontWeight: '600',
+            marginTop: '15px',
+            marginBottom: '15px',
+          }}
+        >
+          {children}
+        </h3>
+      );
+    },
+    h3: ({ children }) => {
+      const id = createHeadingId(children);
+      return (
+        <h4
+          id={id}
+          style={{
+            fontFamily: 'PRETENDARD',
+            fontSize: '24px',
+            fontWeight: '500',
+            marginTop: '10px',
+            marginBottom: '10px',
+          }}
+        >
+          {children}
+        </h4>
+      );
+    },
+    h4: ({ children }) => {
+      const id = createHeadingId(children);
+      return (
+        <h5
+          id={id}
+          style={{
+            fontFamily: 'PRETENDARD',
+            fontSize: '20px',
+            fontWeight: '400',
+            marginTop: '10px',
+            marginBottom: '10px',
+          }}
+        >
+          {children}
+        </h5>
+      );
+    },
+    h5: ({ children }) => {
+      const id = createHeadingId(children);
+      return (
+        <h6
+          id={id}
+          style={{
+            fontFamily: 'PRETENDARD',
+            fontSize: '18px',
+            fontWeight: '400',
+            marginTop: '10px',
+            marginBottom: '10px',
+          }}
+        >
+          {children}
+        </h6>
+      );
+    },
+
+    // 나머지 컴포넌트는 동일하게 유지
     p: ({ children }) => (
       <p
         style={{

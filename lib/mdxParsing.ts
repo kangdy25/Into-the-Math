@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import { visit } from 'unist-util-visit';
 
 type MdxMetadata = {
   slug: string;
@@ -9,6 +12,13 @@ type MdxMetadata = {
   order: number;
   category?: string;
   displayCategory?: string;
+};
+
+// Heading 타입 정의
+export type Heading = {
+  depth: number;
+  text: string;
+  id: string;
 };
 
 // 카테고리 이름 포맷팅
@@ -145,4 +155,46 @@ export function getAllSlugs(locale: string) {
   // index.mdx 파일도 포함 (excludeIndex = false)
   const POSTS_DIR = path.join(process.cwd(), 'posts', locale);
   return findMdxFiles(POSTS_DIR, '', false);
+}
+
+// mdxParsing.ts의 getHeadingsFromContent 함수 수정
+export async function getHeadingsFromContent(
+  content: string,
+): Promise<Heading[]> {
+  if (!content) {
+    console.warn('Content is empty or undefined');
+    return [];
+  }
+
+  try {
+    const tree = unified().use(remarkParse).parse(content);
+    const headings: Heading[] = [];
+
+    visit(tree, 'heading', (node: any) => {
+      if (node.depth !== 1 && node.depth !== 2) return; // h1, h2만 가져옴
+
+      const text = node.children
+        .filter((child: any) => child.type === 'text')
+        .map((child: any) => child.value)
+        .join('');
+
+      if (!text) return;
+
+      const id = text
+        .toLowerCase()
+        .replace(/\s+/g, '-') // 공백 -> 하이픈
+        .replace(/[?!]/g, ''); // 특수문자 제거
+
+      headings.push({
+        depth: node.depth,
+        text,
+        id,
+      });
+    });
+
+    return headings;
+  } catch (error) {
+    console.error('Error parsing markdown content:', error);
+    return [];
+  }
 }

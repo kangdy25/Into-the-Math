@@ -1,4 +1,4 @@
-import { getMdxMetadata } from '@/lib/mdxParsing';
+import { getMdxMetadata, getHeadingsFromContent } from '@/lib/mdxParsing';
 import { getSubjectBySlug } from '@/constants/subject';
 import MathPageLayout from '@/components/ui/MathPageLayout';
 
@@ -17,8 +17,24 @@ export default async function Page({
 
   // index.mdx 로드
   const metadata = getMdxMetadata(locale, `${category}/index`);
+  if (!metadata) {
+    return <div>페이지를 찾을 수 없습니다.</div>;
+  }
+
+  // metadata.content 확인
+  if (!metadata.content) {
+    console.log('콘텐츠가 비어있습니다');
+    return <div>페이지 콘텐츠를 불러오는데 실패했습니다.</div>;
+  }
+
+  let headings = await getHeadingsFromContent(metadata.content);
 
   return (
-    <MathPageLayout locale={locale} metadata={metadata} category={category} />
+    <MathPageLayout
+      locale={locale}
+      metadata={metadata}
+      category={category}
+      headings={headings}
+    />
   );
 }
