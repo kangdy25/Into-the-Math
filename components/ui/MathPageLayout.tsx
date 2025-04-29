@@ -63,11 +63,12 @@ export default function MathPageLayout({
             }}
             components={useMDXComponents({})}
           />
-
-          <Comments />
+          <div id="comments">
+            <Comments />
+          </div>
         </div>
         {/* TOC 사이드바 */}
-        <aside className="hidden lg:block w-[350px] sticky top-[100px] h-screen overflow-auto px-4">
+        <aside className="hidden lg:block w-[350px] sticky top-[100px] h-screen overflow-auto">
           <TOC headings={headings} />
         </aside>
       </div>

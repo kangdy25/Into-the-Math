@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Heading } from '@/lib/mdxParsing';
 import Link from 'next/link';
+import TOCButton from './TOCButton';
 
 type TOCProps = {
   headings: Heading[];
@@ -65,30 +66,33 @@ export default function TOC({ headings }: TOCProps) {
   };
 
   return (
-    <nav className="sticky top-16 p-4 border-l-2 dark:border-l dark:border-slate-800">
-      <p className="text-lg font-pretendard-bold mb-4">On this page</p>
-      <ul className="space-y-2 ">
-        {headings.map((heading) => (
-          <li
-            key={heading.id}
-            className={`${
-              heading.depth === 1 ? '' : 'ml-4'
-            } transition-all duration-200 `}
-          >
-            <Link
-              href={`#${heading.id}`}
-              onClick={(e) => handleLinkClick(e, heading.id)}
-              className={`text-sm font-pretendard-light hover:text-indigo-400 cursor-pointer ${
-                activeId === heading.id
-                  ? 'text-indigo-400 font-bold'
-                  : 'text-slate-700 dark:text-slate-300'
-              } `}
+    <div className="flex flex-col relative mt-10">
+      <nav className="sticky top-16 p-4 border-l-2 dark:border-l dark:border-slate-800">
+        <p className="text-lg font-pretendard-bold mb-4">On this page</p>
+        <ul className="space-y-2">
+          {headings.map((heading) => (
+            <li
+              key={heading.id}
+              className={`${
+                heading.depth === 1 ? '' : 'ml-4'
+              } transition-all duration-200`}
             >
-              {heading.text}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+              <Link
+                href={`#${heading.id}`}
+                onClick={(e) => handleLinkClick(e, heading.id)}
+                className={`text-sm font-pretendard-light hover:text-indigo-400 cursor-pointer ${
+                  activeId === heading.id
+                    ? 'text-indigo-400 font-bold'
+                    : 'text-slate-700 dark:text-slate-300'
+                }`}
+              >
+                {heading.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <TOCButton />
+    </div>
   );
 }

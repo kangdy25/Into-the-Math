@@ -29,6 +29,16 @@ const subjects = [
       'The field of study dealing with discrete mathematical structures and theories',
   },
   {
+    name: '확률과 통계',
+    eng: 'Probability and Statistics',
+    path: '/probability-statistics',
+    slug: 'probability-statistics',
+    icon: probability,
+    descriptionKo: '불확실성과 데이터 분석을 다루는 수학적 접근',
+    descriptionEng:
+      'The mathematical approach to uncertainty and data analysis',
+  },
+  {
     name: '선형대수학',
     eng: 'Linear Algebra',
     path: '/linear-algebra',
@@ -57,16 +67,6 @@ const subjects = [
     descriptionKo: '공간의 연속성과 위상적 성질을 연구하는 수학 분야',
     descriptionEng:
       'The mathematical field studying continuity and topological properties of space',
-  },
-  {
-    name: '확률과 통계',
-    eng: 'Probability and Statistics',
-    path: '/probability-statistics',
-    slug: 'probability-statistics',
-    icon: probability,
-    descriptionKo: '불확실성과 데이터 분석을 다루는 수학적 접근',
-    descriptionEng:
-      'The mathematical approach to uncertainty and data analysis',
   },
 ];
 
