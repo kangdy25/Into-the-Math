@@ -77,7 +77,7 @@ const HeaderButton = ({ theme, setTheme }: any) => {
 
         {/* Github 버튼 */}
         <div className="relative hidden sm:block group">
-          <button className="text-slate-300 w-full cursor-pointer hover:text-white">
+          <button className="w-full cursor-pointer">
             <Github
               onClick={() => {
                 window.open('https://github.com/kangdy25/Into-the-Math');
