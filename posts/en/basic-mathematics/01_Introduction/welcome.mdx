@@ -22,4 +22,95 @@ Inline 수식: $ E = mc^2 $
 
 <BlockMath>$$ f'(a) = \lim\limits_{h \rightarrow 0} \frac{f(a+h)-f(a)}{h} $$</BlockMath>
 
+<Toggle title="이건 제목 1 수준이에요" level={1}>
+  수학적 개념에 대한 깊은 설명을 여기에 씁니다.
+</Toggle>
+
+<Toggle title="제목 2 스타일" level={2}>
+  조금 더 작은 제목으로 분류할 때 사용해요.
+</Toggle>
+
+<Toggle title="제목 3 스타일" level={3}>
+  자잘한 보조 설명용으로 좋아요.
+</Toggle>
+---
+
+<br />
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// ========== 스택 코드 시작 ==========
+#define MAX_STACK_SIZE 100
+
+// 스택이 구조체로 정의된다.
+typedef int element;
+typedef struct {
+	element data[MAX_STACK_SIZE];
+	int top;
+} StackType;
+
+// 스택 초기화 함수
+void init_stack(StackType *s) {
+	s->top = -1;
+}
+
+// 모든 연산은 구조체의 포인터를 받는다.
+
+// 공백 상태 검출 함수
+int is_empty(StackType *s) {
+	return (s->top == -1);
+}
+
+// 포화 상태 검출 함수
+int is_full(StackType *s) {
+	return (s->top == (MAX_STACK_SIZE - 1));
+}
+
+// 삽입 함수
+void push(StackType *s, element item) {
+	if (is_full(s)) {
+		fprintf(stderr, "스택 포화 에러\n");
+		return;
+	}
+	else s->data[++(s->top)] = item;
+}
+
+// 삭제 함수
+element pop(StackType *s) {
+	if (is_empty(s)) {
+		fprintf(stderr, "스택 공백 에러\n");
+		exit(1);
+	}
+	else return s->data[(s->top)--];
+}
+
+// 피크 함수
+element peek(StackType *s) {
+	if (is_empty(s)) {
+		fprintf(stderr, "스택 공백 에러\n");
+		exit(1);
+	}
+	else return s->data[s->top];
+}
+// ========== 스택 코드의 끝 ==========
+
+int main() {
+	StackType s;
+	// 스택을 동적으로 생성한다.
+	// s = (StackType *)malloc(sizeof(StackType));
+	init_stack(&s);
+	push(&s, 1);
+	push(&s, 2);
+	push(&s, 3);
+	printf("%d\n", pop(&s));
+	printf("%d\n", pop(&s));
+	printf("%d\n", pop(&s));
+	// 동적 메모리는 반드시 반환한다.
+	// free(s);
+	return 0;
+}
+```
+
 ---
