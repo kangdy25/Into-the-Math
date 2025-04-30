@@ -1,129 +1,90 @@
-# 📜 Into the Math 📜
+# Into the Math
+
+📘 **Into the Math**는 누구나 수학을 공부할 수 있는 위키 형식 프로젝트입니다.  
+Next.js 기반의 정적 사이트로 제작되었으며, 누구나 수학 지식을 체계적으로 정리하고 습득할 수 있도록 돕습니다.
+
+🔗 [배포 사이트 바로가기](https://into-the-math.vercel.app/ko)
+
+---
+<img src="./public/thumbnail.png" />
+
+## ✨ 주요 기능
+
+- 🧠 **수학 위키**: 기초수학부터 대학수학까지 체계적으로 구성된 콘텐츠
+- 📝 **Markdown 기반 문서 작성**: 수식, 코드, 표 등을 쉽게 작성 가능
+- 🌐 **다국어 지원**: 한국어 / 영어를 모두 지원 (국제화 기능)
+- 📚 **사이드바 + TOC**: 좌측 목차와 우측 목차를 통한 빠른 탐색
+- 📊 **수식 지원**: KaTeX를 통한 수학 표현식 렌더링
+- 🌙 **다크 모드 지원**: 사용자 환경에 맞는 테마 제공
+- 🎨 **반응형 디자인**: 모든 디바이스에서 최적화된 UI
+- ⚡ **빠른 페이지 로딩**: Next.js의 SSG 방식을 통한 최적화된 성능
+- 💬 **댓글 기능(Giscus)**: 깃허브 이슈 기반의 댓글 기능으로 피드백 수용 가능
+- ⚙️ **커스터마이징된 개발 환경**: MDX, Remark 플러그인, 코드블록 렌더링 등
 
 ---
 
-## 기초 수학 (Basic Mathematics)
+## 🛠️ 기술 스택
 
-### 🎯 학습 목표 (Learning Objectives) 🎯
-
-> 대학수학을 공부하기 위해 필요한 초중고 교육과정 수준의 수학을 학습한다. 기초적인 대수학, 논증기하학, 해석기하학, 미적분학, 확률과 통계를 다루며 대학수학을 위한 벡터와 행렬, 복소평면까지 공부한다.
-
-### 📝 목차 (Index) 📝
-
-- [기초 명제 논리학](https://tropical-pasta-efb.notion.site/Ch-1-1609b588b5c1434e875558149533303e)
-- [기초 대수학](https://tropical-pasta-efb.notion.site/Ch-2-877845fa1c4e4303ba89d3f032cb6386)
-- [기초 논증기하학](https://tropical-pasta-efb.notion.site/Ch-3-4588b373558a4306a4f17402fa9644be)
-- [기초 해석기하학](https://tropical-pasta-efb.notion.site/Ch-4-eb5874960fb5408aaeb04cddde106937)
-- [기초 정수론](https://tropical-pasta-efb.notion.site/Ch-5-4973c6032958470d968b0fc3c2ab03e1)
-- [기초 해석학](https://tropical-pasta-efb.notion.site/Ch-6-fe637f10520245f29568f2d91353f672)
-- [기초 확률과 통계](https://tropical-pasta-efb.notion.site/Ch-7-50db8f3911fc488dad9dd855c4f8ed27)
-- [+α) 대학수학으로 가는 길](https://tropical-pasta-efb.notion.site/dfe8727606a5429d983f0e41626cba8e)
-
----
-
-## 이산 수학 (Discrete Mathematics)
-
-### 🎯 학습 목표 (Learning Objectives) 🎯
-
-> 논리와 명제, 관계와 함수, 행렬과 행렬식, 오토마타 및 형식 언어등 이산적 수학에 관련된 지식들에 관한 정확한 정의와 성질을 고찰하고 이산적 사고 방법을 이해하여 이산적 사고 능력을 배양하도록 학습한다.
-
-### 📝 목차 (Index) 📝
-
-- [이산수학 개론](https://kangdy25.tistory.com/96)
-- [행렬](https://kangdy25.tistory.com/97)
-- [논리적 추론](https://kangdy25.tistory.com/99)
-- [증명과 프로그램 검증](https://kangdy25.tistory.com/100)
-- [집합](https://kangdy25.tistory.com/112)
-- [관계](#)
-- [함수](#)
-- [부분 순서 관계와 부울 대수](#)
-- [그래프](#)
-- [트리](#)
-- [경우의 수 세기와 확률](#)
-- [점화 관계와 알고리즘](#)
-- [형식 언어와 오토마타](#)
+| 기술 | 설명 |
+|------|------|
+| [Next.js](https://nextjs.org/) | 정적 페이지 생성 및 라우팅 |
+| [MDX](https://mdxjs.com/) | Markdown + JSX 문법으로 유연한 문서 구성 |
+| [Tailwind CSS](https://tailwindcss.com/) | 유틸리티 기반 CSS 프레임워크 |
+| [lucide-react](https://github.com/ruicide) | 깔끔하고 일관된 오픈소스 아이콘 라이브러리 |
+| [next-intl](https://github.com/amannn/next-intl) | 다국어 번역 및 로컬라이징 처리 |
+| [KaTeX](https://katex.org/) | 빠르고 깔끔한 수식 렌더링 |
+| [Shiki](https://shiki.style/) | 코드 하이라이팅 엔진 |
+| [gray-matter](https://github.com/jonschlinkert/gray-matter) | Markdown 메타데이터 파싱 |
+| [remark plugins](https://github.com/remarkjs/remark) | Markdown 처리(TOC 생성, 자동 링크, 수식 파싱 등) |
+| [Utterances](https://utteranc.es/) | GitHub Issues 기반 댓글 시스템 |
+| [Vercel](https://vercel.com/) | 정적 웹사이트 호스팅 및 배포 |
 
 ---
 
-## 선형대수학 (Linear Algebra)
+## 📁 폴더 구조
 
-### 🎯 학습 목표 (Learning Objectives) 🎯
+```bash
+.
+├── app/                  # 라우팅 및 국제화 페이지
+     ├── [locale]  
+            ├── [category] 
+                    ├── [...slug] 
+                            ├── page.tsx # 개별 포스팅 페이지
+                    ├── page.tsx # 카테고리 별 인덱스 페이지
+            ├── page.tsx # 메인 페이지
+            ├── layout.tsx # 공통 레이아웃 페이지
+├── components/           # 공통 UI 컴포넌트
+     ├── ui/
+     ├── post/
+├── constants/            # 전역 상수값 및 설정 정의 (과목, 아이콘 등)
+├── i18n/                 # 국제화 관련 설정 및 유틸리티 함수
+├── lib/                  # 유틸리티 함수 및 핵심 로직 (MDX 파싱)
+├── messages/             # 다국어 번역 메시지 파일 모음
+├── posts/                # 실제 수학 콘텐츠(MDX 파일) 
+     ├── en/
+     ├── ko/
+├── public/               # 정적 파일 (이미지, 아이콘 등)
+├── mdx-components.tsx    # MDX 컴포넌트 커스터마이징 설정 파일
+├── middleware.ts         # 로케일 리디렉션 설정 및 요청 처리 미들웨어
+├── next.config.mjs       # Next.js 구성 파일 (플러그인, 환경 설정 등)
+└── package.json          # 프로젝트 의존성 및 스크립트 정의 파일
+```
 
-> 선형대수의 원리를 이해하고 기초를 배울 수 있다. 벡터, 행렬에 대한 기본 개념을 배우며, 벡터 공간, 선형 변환에 대한 다양한 문제 해결 방법을 배운다. 컴퓨터그래픽스, 머신러닝등 컴퓨터 공학의 다양한 분야에 응용되는 직교화과정, 최소자승화, 고유값, 고유치, 대각화, 특이값 분해등의 방법론들을 배운다
+## 🧑‍💻 기여 방법
+1. 이 프로젝트를 fork 합니다.
+2. 새로운 브랜치를 만듭니다. (git switch -c feature/your-feature)
+3. 변경사항을 커밋합니다. (git add . 후 git commit -m "Add your feature")
+4. 브랜치를 푸시합니다. (git push -u origin feature/your-feature)
+5. Pull Request를 생성합니다.
 
-### 📝 목차 (Index) 📝
+> 수학 콘텐츠 기여 또는 번역 제안도 환영합니다! 모든 문서는 .mdx 형식으로 작성되며, posts/ 디렉토리에 추가해주세요.
 
-- [행렬과 행렬식](#)
-- [물리적 벡터](#)
-- [수학적 벡터](#)
-- [선형사상](#)
-- [고유값과 대각화](#)
-- [복소벡터공간](#)
-- [최적화 문제](#)
-- [자료의 처리](#)
+### 📄 라이선스
+이 프로젝트는 MIT 라이선스를 따릅니다.
+자세한 내용은 LICENSE 파일을 참고해주세요.
 
----
+### 🙌 제작자
+개발 및 기획: @kangdy25
 
-## 해석학 (Analysis)
-
-### 🎯 학습 목표 (Learning Objectives) 🎯
-
-> 문제해결능력을 함양하기 위한 미적분학을 이해하고 약속된 기호 체계 하에서 수학적으로 의사소통하는 방법을 체득한다. 미적분학을 기초로 둔 엄밀한 증명을 통하여 논리적 사고 능력을 향상시킨다.
-
-### 📝 목차 (Index) 📝
-
-- [집합론](#)
-- [실수 체계](#)
-- [정수와 실수의 구성적 정의](#)
-- [극한과 연속](#)
-- [미분](#)
-- [리만 적분](#)
-- [수열, 급수의 극한](#)
-- [함수열과 멱급수](#)
-- [해석함수](#)
-
----
-
-## 확률과 통계 (Probability and Statistics)
-
-### 🎯 학습 목표 (Learning Objectives) 🎯
-
-> 확률과 통계에서 보편적으로 다루는 기술통계학, 확률 및 확률분포, 통계적 추론과 확률과정을 배울 수 있는 과정으로 구성되었으며, 파이썬 또는 R 실습을 통해 공학적 통계 문제 해결 방법과 머신러닝 적용시 통계적 기초 지식을 확대 응용 가능하게 한다.
-
-### 📝 목차 (Index) 📝
-
-- [데이터의 정리와 요약](#)
-- [확률](#)
-- [확률변수와 확률분포](#)
-- [확률변수의 기댓값](#)
-- [이산형 확률분포](#)
-- [연속형 확률분포](#)
-- [정규분포와 관련 분포](#)
-- [표본 통계량의 분포](#)
-- [단일 모집단에 대한 추론](#)
-- [두 모집단에 대한 추론](#)
-- [범주형 데이터 분석](#)
-- [분산분석](#)
-- [상관분석과 회귀분석](#)
-- [비모수적 방법](#)
-
----
-
-## 위상 수학 (Topology)
-
-### 🎯 학습 목표 (Learning Objectives) 🎯
-
-> 위상수학의 중심 개념의 논리적인 이해를 바탕으로 중요한 위상공간을 구체적인 방법으로 정의하고 이들의 위상적 개념과 관련된 성질에 대해 상세히 알아본다.
-
-### 📝 목차 (Index) 📝
-
-- [Ch 1. 위상 공간](#)
-- [Ch 2. 연속 사상](#)
-- [Ch 3. 분리공리](#)
-- [Ch 4. 컴팩트공간](#)
-- [Ch 5. 연결공간](#)
-- [Ch 6. 상공간](#)
-- [Ch 7. 기본군](#)
-- [Ch 8. 덮개공간](#)
-
----
+기여자 여러분 환영합니다! 🙏
+오타 수정, 콘텐츠 추가, 스타일 개선 등 모든 형태의 기여가 소중합니다.
