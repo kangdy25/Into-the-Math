@@ -121,7 +121,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         style={{
           fontFamily: 'PRETENDARD',
           fontSize: '16px',
-          lineHeight: '1.6',
+          lineHeight: '1.75',
         }}
       >
         {children}
