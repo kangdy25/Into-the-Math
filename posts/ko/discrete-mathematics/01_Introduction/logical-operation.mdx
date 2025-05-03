@@ -1,0 +1,140 @@
+---
+title: '논리 연산'
+date: 2025-05-03
+category: '1. 소개'
+order: 2
+---
+
+# 정의와 명제
+
+새로운 분야를 접할 때 그 분야에서 통용되는 용어의 뜻을 알아야 그 분야에 잘 적응할 수 있어야 합니다. 그 때 잘 알아야 하는 것이 바로 용어의 “정의”입니다.
+
+용어를 정의하는 방법으로는 두 가지가 있습니다. 첫 번째는 “무정의 용어”를 통해 용어를 정의하는 것입니다. 두 번째는 “무정의 용어”나 정의된 다른 용어를 통하여 또 다른 용어를 정의하는 것입니다.
+
+<Callout title="무정의 용어 (정의)">
+  수학적 의미를 가지고 있지 않은 일반적인 용어에 대해 정의하지 않고 사용하는 것
+</Callout>
+
+무정의 용어와 정의된 용어를 준비된다면 문장을 만들 수 있습니다. 문장에는 직관적 추론에
+의하여 “참 또는 거짓인지를 명확히 구분할 수 있는 문장”(명제)와 그렇지 않은 문장으로
+나뉩니다.
+
+<Callout title="명제 (정의)">
+  참 또는 거짓 중 단 하나만 갖는 문장을 말한다. 명제 중 명제의 내용이 참이 되는
+  명제를 **참 명제**라 하고, 명제의 내용이 거짓이 되는 명제를 **거짓 명제**라고
+  한다.
+</Callout>
+
+<Callout title="진리값 (정의)">
+  참과 거짓을 진리값이라 하며, $\text{T \ (참, 1)}$, $\text{F \ (거짓, 0)}$ 으로 표현한다.<br /> 
+  명제 $\text{P}$ 는 $\text{T}$ 또는 $\text{F}$ 중 어느 하나만을 진리값으로 가진다.
+</Callout>
+---
+
+# 논리 연산
+
+주어진 명제를 합성하여 새로운 명제를 만들게 되는데, 명제를 합성하기 위해서는 논리 연산이나 부울 연산을 진행하게 됩니다. 지금부터 논리 연산에 대해서 알아보도록 하겠습니다.
+
+## 논리곱 (AND)
+
+<Callout title="논리곱 (정의)">
+  임의의 명제 $\text{P}$ 와 $\text{Q}$ 에 대해, 두 명제의 진리값이 모두 참일 경우에만 참이 되고 그렇지 않으면 거짓이 된다. $\text{P} \wedge \text{Q}$ 로 표기하며, $\text{P AND Q}$ 라고 읽는다.
+</Callout>
+
+논리곱 $\text{P} \wedge \text{Q}$의 진리표는 다음과 같습니다.
+
+<br />
+
+| $\text{P}$ | $\text{Q}$ | $\text{P} \wedge \text{Q}$ |
+| :--------: | :--------: | :------------------------: |
+| $\text{T}$ | $\text{T}$ |         $\text{T}$         |
+| $\text{T}$ | $\text{F}$ |         $\text{F}$         |
+| $\text{F}$ | $\text{T}$ |         $\text{F}$         |
+| $\text{F}$ | $\text{F}$ |         $\text{F}$         |
+
+## 논리합 (OR)
+
+<Callout title="논리합 (정의)">
+  임의의 명제 $\text{P}$와 $\text{Q}$에 대해, 두 명제의 진리값이 모두 거짓일 경우에만 거짓이 되고 그렇지 않으면 참이 된다. $\text{P} \vee \text{Q}$로 표기하며, $\text{P OR Q}$ 라고 읽는다.
+</Callout>
+
+논리합 $\text{P} \vee \text{Q}$의 진리표는 다음과 같습니다.
+
+<br />
+
+| $\text{P}$ | $\text{Q}$ | $\text{P} \vee \text{Q}$ |
+| :--------: | :--------: | :----------------------: |
+| $\text{T}$ | $\text{T}$ |        $\text{T}$        |
+| $\text{T}$ | $\text{F}$ |        $\text{T}$        |
+| $\text{F}$ | $\text{T}$ |        $\text{T}$        |
+| $\text{F}$ | $\text{F}$ |        $\text{F}$        |
+
+## 부정 (NOT)
+
+<Callout title="부정 (정의)">
+  임의의 명제 $\text{P}$에 대해, $\text{P}$의 진리값의 반대의 값을 도출한다. $^\neg \text{P}$ 로 표기하며, $\text{negation P}$ 또는 $\text{not P}$ 라고 읽는다.
+</Callout>
+
+부정 $^\neg ㄷ\text{P}$ 의 진리표는 다음과 같습니다.
+
+<br />
+
+| $\text{P}$ | $^\neg \text{P}$ |
+| :--------: | :--------------: |
+| $\text{T}$ |    $\text{F}$    |
+| $\text{F}$ |    $\text{T}$    |
+
+## 배타적 논리합 (XOR)
+
+<Callout title="배타적 논리합 (정의)">
+  임의의 명제 $\text{P}$와 $\text{Q}$에 대해, 두 명제의 진리값 중 어느 하나만 참일 경우에 참이 되고 모두 참이거나 거짓일 경우에는 거짓이 된다. $\text{P} \oplus \text{Q}$로 표기하며, $\text{P exclusive or Q}$ 라고 읽는다.
+</Callout>
+
+배타적 논리합 $\text{P} \oplus \text{Q}$의 진리표는 다음과 같습니다.
+
+<br />
+
+| $\text{P}$ | $\text{Q}$ | $\text{P} \oplus \text{Q}$ |
+| :--------: | :--------: | :------------------------: |
+| $\text{T}$ | $\text{T}$ |         $\text{F}$         |
+| $\text{T}$ | $\text{F}$ |         $\text{T}$         |
+| $\text{F}$ | $\text{T}$ |         $\text{T}$         |
+| $\text{F}$ | $\text{F}$ |         $\text{F}$         |
+
+## 논리 함축
+
+<Callout title="논리 함축 (정의)">
+  임의의 명제 $\text{P}$와 $\text{Q}$에 대해, 두 명제가 $\rightarrow$로 결합되었을 때를 논리 함축이라고 한다. $\text{P} \rightarrow \text{Q}$로 표기하며, $\text{P implies Q}$ 라고 읽는다. 논리 함축 $\text{P} \rightarrow \text{Q}$에서 $\text{P}$ 를 “가정”이라고 하며 $\text{Q}$ 를 “결론”이라고 한다. $\text{P} \rightarrow \text{Q}$는 “$\text{P}$이면 $\text{Q}$이다”, “$\text{P}$는 $\text{Q}$의 충분조건이다”, “$\text{Q}$는 $\text{P}$의 필요조건이다” 등으로 표현 가능하다.
+</Callout>
+
+논리 함축 $\text{P} \rightarrow \text{Q}$의 진리표는 다음과 같습니다.
+
+<br />
+
+| $\text{P}$ | $\text{Q}$ | $\text{P} \rightarrow \text{Q}$ |
+| :--------: | :--------: | :-----------------------------: |
+| $\text{T}$ | $\text{T}$ |           $\text{T}$            |
+| $\text{T}$ | $\text{F}$ |           $\text{F}$            |
+| $\text{F}$ | $\text{T}$ |           $\text{T}$            |
+| $\text{F}$ | $\text{F}$ |           $\text{T}$            |
+
+<br />
+
+## 역 & 이 & 대우
+
+명제에서 사용되는 역, 이, 대우의 개념은 다음과 같습니다.
+
+<Callout title="역 (Converse)">
+  논리 함축 $\text{P} \rightarrow \text{Q}$에 대해, $\text{Q} \rightarrow \text
+  {P}$를 말한다. 즉, 명제의 가정과 결론의 위치를 바꾼 것이다.
+</Callout>
+<Callout title="이 (inverse)">
+  논리 함축 $\text{P} \rightarrow \text{Q}$에 대해, $^\neg\text{P} \rightarrow
+  ^\neg\text{Q}$를 말한다. 즉, 명제의 가정과 결론을 각각 부정으로 만든 것이다.
+</Callout>
+<Callout title="대우 (contrapositive)">
+  논리 함축 $\text{P} \rightarrow \text{Q}$에 대해, $^\neg\text{Q} \rightarrow
+  ^\neg\text{P}$를 말한다. 즉, 명제의 가정과 결론의 위치를 바꾸고 바뀐 가정과
+  결론에 부정을 붙인 것이다. 명제가 참이면 반드시 대우도 참이 된다.
+</Callout>
+---

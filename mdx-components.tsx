@@ -240,6 +240,43 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+    // 테이블 스타일 추가
+    table: ({ children }) => (
+      <table
+        style={{
+          width: '100%',
+          padding: '2rem',
+        }}
+      >
+        {children}
+      </table>
+    ),
+    th: ({ children }) => (
+      <th
+        style={{
+          borderBottom: '1px solid rgba(128, 128, 128, 0.5)',
+          padding: '1rem',
+          textAlign: 'center',
+          fontWeight: '600',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px',
+          fontSize: '18px',
+        }}
+      >
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td
+        style={{
+          borderBottom: '1px solid rgba(128, 128, 128, 0.5)',
+          padding: '1rem',
+          textAlign: 'center',
+        }}
+      >
+        {children}
+      </td>
+    ),
 
     // Add custom Components
     BlockMath,
