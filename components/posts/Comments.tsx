@@ -2,23 +2,17 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-const Comments = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+// 다크모드 커스텀 훅
+const useDarkMode = (): boolean => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // 다크모드 상태 확인 함수
-  const checkDarkMode = (): boolean => {
-    return document.documentElement.classList.contains('dark');
-  };
-
-  // 현재 다크모드 상태 감지
   useEffect(() => {
-    // 초기 다크모드 상태 설정
-    setIsDarkMode(checkDarkMode());
+    const isDark = () => document.documentElement.classList.contains('dark');
+    setIsDarkMode(isDark());
 
-    // 다크모드 변경 감지
+    // 다크모드 클래스 변경을 감지
     const observer = new MutationObserver(() => {
-      setIsDarkMode(checkDarkMode());
+      setIsDarkMode(isDark());
     });
 
     observer.observe(document.documentElement, {
@@ -29,14 +23,24 @@ const Comments = () => {
     return () => observer.disconnect();
   }, []);
 
-  // utterances 로드
-  useEffect(() => {
+  return isDarkMode;
+};
+
+// Utterances 댓글 컴포넌트
+const Comments = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isDarkMode = useDarkMode();
+
+  // Utterances 스크립트를 동적으로 삽입
+  const loadUtterances = () => {
     if (!ref.current) return;
 
-    // 기존 댓글 제거 (utterances의 테마는 동적으로 변경 불가능)
-    ref.current.innerHTML = '';
+    // 안전하게 기존 노드 제거
+    while (ref.current.firstChild) {
+      ref.current.removeChild(ref.current.firstChild);
+    }
 
-    // 새 스크립트 생성
+    // Utterances 스크립트 생성
     const script = document.createElement('script');
     script.src = 'https://utteranc.es/client.js';
     script.async = true;
@@ -44,8 +48,19 @@ const Comments = () => {
     script.setAttribute('issue-term', 'pathname');
     script.setAttribute('theme', isDarkMode ? 'github-dark' : 'github-light');
     script.setAttribute('label', 'blog-comment');
+    script.crossOrigin = 'anonymous';
 
     ref.current.appendChild(script);
+  };
+
+  // DOM이 안정된 후에 실행되도록 setTimeout 사용
+  // 한 프레임 뒤로 미뤄서 안전하게 DOM 접근
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      loadUtterances();
+    }, 0);
+
+    return () => clearTimeout(timeout);
   }, [isDarkMode]);
 
   return <div ref={ref} />;

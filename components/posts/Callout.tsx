@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-const Callout = ({ type, title, children }: any) => {
+interface CalloutProps {
+  type?: 'tip' | 'warning' | 'danger' | 'important' | 'default';
+  title: string;
+  children: ReactNode;
+}
+
+const Callout = ({ type = 'default', title, children }: CalloutProps) => {
   let info = '';
   let calloutStyle = '';
   let icon = '';
@@ -46,7 +52,7 @@ const Callout = ({ type, title, children }: any) => {
       <div className="">
         <span className="text-md mr-2">{icon}</span>
         <span className={`text-lg font-pretendard-bold ${color}`}>{info}</span>
-        <span className={`text-md mx-3 font-pretendard-bold ${color}0`}>
+        <span className={`text-md mx-3 font-pretendard-bold ${color}`}>
           {title}
         </span>
       </div>

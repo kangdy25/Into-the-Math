@@ -28,7 +28,7 @@ const createHeadingId = (children: React.ReactNode): string => {
 };
 
 /**
- * 공통 heading 렌더링 함수 (h1~h5 대응)
+  공통 heading 렌더링 함수 (h1~h5 대응)
   MDX 문서 상의 h1이지만, 실제 HTML에서는 페이지 내 <h1>은 하나만 사용해야 하므로
   시멘틱 구조를 위해 <h2>로 렌더링
   예: MDX 상의 h1 → HTML의 h2, h2 → h3 ...
