@@ -3,10 +3,10 @@ import Image, { ImageProps } from 'next/image';
 import BlockMath from './components/posts/BlockMath';
 import Toggle from './components/posts/Toggle';
 import Callout from './components/posts/Callout';
+import { JSX, ReactNode } from 'react';
 
-// ID 생성을 위한 헬퍼 함수
+// TOC를 위한 ID 생성을 위한 함수
 const createHeadingId = (children: React.ReactNode): string => {
-  // children이 문자열인지 확인
   if (typeof children === 'string') {
     return children
       .toLowerCase()
@@ -27,95 +27,49 @@ const createHeadingId = (children: React.ReactNode): string => {
   }
 };
 
+/**
+ * 공통 heading 렌더링 함수 (h1~h5 대응)
+  MDX 문서 상의 h1이지만, 실제 HTML에서는 페이지 내 <h1>은 하나만 사용해야 하므로
+  시멘틱 구조를 위해 <h2>로 렌더링
+  예: MDX 상의 h1 → HTML의 h2, h2 → h3 ...
+ */
+const renderHeading = (
+  level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
+  tag: keyof JSX.IntrinsicElements,
+  fontSize: string,
+  fontWeight: string,
+  marginTop = '10px',
+  marginBottom = '10px',
+) => {
+  return ({ children }: { children: ReactNode }) => {
+    const id = createHeadingId(children);
+    const HeadingTag = tag;
+    return (
+      <HeadingTag
+        id={id}
+        style={{
+          fontFamily: 'PRETENDARD',
+          fontSize,
+          fontWeight,
+          marginTop,
+          marginBottom,
+        }}
+      >
+        {children}
+      </HeadingTag>
+    );
+  };
+};
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: ({ children }) => {
-      const id = createHeadingId(children);
-      return (
-        <h2
-          id={id}
-          style={{
-            fontFamily: 'PRETENDARD',
-            fontSize: '40px',
-            fontWeight: '700',
-            marginTop: '20px',
-            marginBottom: '20px',
-          }}
-        >
-          {children}
-        </h2>
-      );
-    },
-    h2: ({ children }) => {
-      const id = createHeadingId(children);
-      return (
-        <h3
-          id={id}
-          style={{
-            fontFamily: 'PRETENDARD',
-            fontSize: '28px',
-            fontWeight: '600',
-            marginTop: '15px',
-            marginBottom: '15px',
-          }}
-        >
-          {children}
-        </h3>
-      );
-    },
-    h3: ({ children }) => {
-      const id = createHeadingId(children);
-      return (
-        <h4
-          id={id}
-          style={{
-            fontFamily: 'PRETENDARD',
-            fontSize: '24px',
-            fontWeight: '500',
-            marginTop: '10px',
-            marginBottom: '10px',
-          }}
-        >
-          {children}
-        </h4>
-      );
-    },
-    h4: ({ children }) => {
-      const id = createHeadingId(children);
-      return (
-        <h5
-          id={id}
-          style={{
-            fontFamily: 'PRETENDARD',
-            fontSize: '20px',
-            fontWeight: '400',
-            marginTop: '10px',
-            marginBottom: '10px',
-          }}
-        >
-          {children}
-        </h5>
-      );
-    },
-    h5: ({ children }) => {
-      const id = createHeadingId(children);
-      return (
-        <h6
-          id={id}
-          style={{
-            fontFamily: 'PRETENDARD',
-            fontSize: '18px',
-            fontWeight: '400',
-            marginTop: '10px',
-            marginBottom: '10px',
-          }}
-        >
-          {children}
-        </h6>
-      );
-    },
+    // Heading
+    h1: renderHeading('h1', 'h2', '40px', '700', '20px', '20px'),
+    h2: renderHeading('h2', 'h3', '28px', '600', '15px', '15px'),
+    h3: renderHeading('h3', 'h4', '24px', '500'),
+    h4: renderHeading('h4', 'h5', '20px', '400'),
+    h5: renderHeading('h5', 'h6', '18px', '400'),
 
-    // 나머지 컴포넌트는 동일하게 유지
     p: ({ children }) => (
       <p
         style={{
