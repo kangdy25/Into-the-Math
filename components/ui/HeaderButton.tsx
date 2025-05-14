@@ -1,19 +1,17 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { Github, Languages, Moon, Sun } from 'lucide-react'; // lucide-react 아이콘 사용
 
-const HeaderButton = ({ theme, setTheme }: any) => {
+interface HeaderButtonProps {
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+}
+
+const HeaderButton = ({ theme, setTheme }: HeaderButtonProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(storedTheme);
-    document.documentElement.classList.add(storedTheme);
-  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -23,12 +21,9 @@ const HeaderButton = ({ theme, setTheme }: any) => {
     document.documentElement.classList.add(newTheme);
   };
 
-  // 언어 전환 함수
   const toggleLanguage = () => {
     // 현재 locale이 'en'이면 'ko'로, 'ko'면 'en'으로 전환
     const newLocale = locale === 'en' ? 'ko' : 'en';
-
-    // 로컬 스토리지에 선택한 언어 저장
     localStorage.setItem('language', newLocale);
 
     // 현재 경로에서 locale 부분만 변경하여 새 URL로 이동
@@ -38,6 +33,11 @@ const HeaderButton = ({ theme, setTheme }: any) => {
 
     router.push(newPath);
   };
+
+  const visitGithub = () => {
+    window.open('https://github.com/kangdy25/Into-the-Math');
+  };
+
   return (
     <div>
       {/* 홈 버튼 */}
@@ -77,12 +77,12 @@ const HeaderButton = ({ theme, setTheme }: any) => {
 
         {/* Github 버튼 */}
         <div className="relative hidden sm:block group">
-          <button className="w-full cursor-pointer">
-            <Github
-              onClick={() => {
-                window.open('https://github.com/kangdy25/Into-the-Math');
-              }}
-            />
+          <button
+            className="w-full cursor-pointer"
+            onClick={visitGithub}
+            aria-label="Github"
+          >
+            <Github />
           </button>
           <span className="absolute w-auto min-w-max left-1/2 -translate-x-1/2 top-full mt-2 hidden group-hover:block rounded bg-gray-800 text-white text-xs px-2 py-1 z-20">
             {locale === 'en' ? 'Visit to Github' : 'Github 방문하기'}

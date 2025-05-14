@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { blackLogo, whiteLogo } from '@/constants/icons';
 import { useRouter } from 'next/navigation';
-import { Menu, X } from 'lucide-react'; // lucide-react 아이콘 사용
+import { Menu, X } from 'lucide-react';
 import HeaderButton from './HeaderButton';
 
 interface HeaderProps {
@@ -16,10 +16,11 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
   const router = useRouter();
 
   // 헤더에서 사용할 다크모드 구현
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
+    const storedTheme =
+      (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
     setTheme(storedTheme);
     document.documentElement.classList.add(storedTheme);
   }, []);
@@ -50,9 +51,7 @@ const Header = ({ isMobile, isSidebarOpen, toggleSidebar }: HeaderProps) => {
           />
           <h3
             className="text-xl sm:text-2xl text-gray-700 font-pretendard-bold cursor-pointer dark:text-white"
-            onClick={() => {
-              router.push('/');
-            }}
+            onClick={() => router.push('/')}
           >
             Into the Math
           </h3>
