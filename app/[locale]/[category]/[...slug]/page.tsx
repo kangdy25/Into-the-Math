@@ -1,6 +1,6 @@
 import { getMdxMetadata, getHeadingsFromContent } from '@/lib/mdxParsing';
 import { getSubjectBySlug } from '@/constants/subject';
-import MathPageLayout from '@/components/ui/MathPageLayout';
+import MathPageLayout from '@/components/ui/layout/MathPageLayout';
 
 type PageParams = Promise<{
   locale: 'en' | 'ko';

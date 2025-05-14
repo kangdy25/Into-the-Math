@@ -1,5 +1,5 @@
-import Header from '@/components/ui/Header';
-import SubjectBtn from '@/components/ui/SubjectBtn';
+import Header from '@/components/ui/header/Header';
+import SubjectBtn from '@/components/ui/layout/SubjectButton';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {

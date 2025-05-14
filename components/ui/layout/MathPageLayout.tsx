@@ -4,12 +4,12 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypePrettyCode from 'rehype-pretty-code';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import Header from '@/components/ui/Header';
-import SidebarWrapper from '@/components/ui/SidebarWrapper';
+import Header from '@/components/ui/header/Header';
+import SidebarWrapper from '@/components/ui/sidebar/SidebarWrapper';
 import { useMDXComponents } from '@/mdx-components';
 import Comments from '@/components/posts/Comments';
 import ClientLayout from './ClientLayout';
-import TOC from './TOC';
+import TOC from '../toc/TOC';
 
 interface MathPageLayoutProps {
   metadata: {
