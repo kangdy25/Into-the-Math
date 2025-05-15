@@ -76,7 +76,7 @@ function findMdxFiles(
 }
 
 // slug를 받아 해당 MDX 파일의 메타데이터와 내용을 반환하는 함수
-export function getMdxMetadata(locale: string, slug: string) {
+export function getMdxPageData(locale: string, slug: string) {
   // 슬러그가 경로 구분자('/')를 포함할 경우 처리
   const POSTS_DIR = path.join(process.cwd(), 'posts', locale);
   const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
@@ -120,11 +120,11 @@ export function getAllMdxMetadata(locale: string) {
     // index.mdx 파일 제외
     if (slug === 'index') return;
 
-    const metadata = getMdxMetadata(locale, slug);
+    const pageData = getMdxPageData(locale, slug);
 
-    if (metadata) {
+    if (pageData) {
       // 카테고리 구성
-      const categoryPath = metadata.category || 'uncategorized';
+      const categoryPath = pageData.category || 'uncategorized';
 
       // 표시용 카테고리 이름 저장
       if (!displayNameMap[categoryPath]) {
@@ -136,7 +136,7 @@ export function getAllMdxMetadata(locale: string) {
       }
 
       categories[categoryPath].push({
-        ...metadata,
+        ...pageData,
         displayCategory: displayNameMap[categoryPath],
       });
     }

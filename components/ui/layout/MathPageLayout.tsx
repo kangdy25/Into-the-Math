@@ -12,7 +12,7 @@ import ClientLayout from './ClientLayout';
 import TOC from '../toc/TOC';
 
 interface MathPageLayoutProps {
-  metadata: {
+  pageData: {
     title?: string;
     content: string;
   } | null;
@@ -27,11 +27,11 @@ interface MathPageLayoutProps {
 
 export default function MathPageLayout({
   locale,
-  metadata,
+  pageData,
   category,
   headings,
 }: MathPageLayoutProps) {
-  if (!metadata) {
+  if (!pageData) {
     return <div>페이지를 찾을 수 없습니다.</div>;
   }
 
@@ -42,10 +42,10 @@ export default function MathPageLayout({
       <div className="flex flex-1 relative top-[81px] xl:ml-[350px] justify-center">
         <div className="max-w-[1000px] w-full px-6 md:px-16 py-10">
           <h1 className="font-pretendard-extrabold mt-8 mb-16 text-center text-5xl sm:text-6xl ">
-            {metadata.title ?? '제목 없음'}
+            {pageData.title ?? '제목 없음'}
           </h1>
           <MDXRemote
-            source={metadata.content}
+            source={pageData.content}
             options={{
               mdxOptions: {
                 remarkPlugins: [remarkMdxFrontmatter, remarkGfm, remarkMath],

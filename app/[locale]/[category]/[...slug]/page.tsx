@@ -1,14 +1,22 @@
-import { getMdxMetadata, getHeadingsFromContent } from '@/lib/mdxParsing';
+import { getMdxPageData, getHeadingsFromContent } from '@/lib/mdxParsing';
 import { getSubjectBySlug } from '@/constants/subject';
 import MathPageLayout from '@/components/ui/layout/MathPageLayout';
 
-type PageParams = Promise<{
-  locale: 'en' | 'ko';
+const locales = ['en', 'ko'] as const;
+
+type Locale = (typeof locales)[number];
+
+type PageParams = {
+  locale: Locale;
   category: string;
   slug: string[];
-}>;
+};
 
-export default async function Page({ params }: { params: PageParams }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<PageParams>;
+}) {
   const { locale, category, slug } = await params;
 
   // 카테고리 검증
@@ -19,24 +27,24 @@ export default async function Page({ params }: { params: PageParams }) {
 
   // 배열로 된 slug를 문자열로 변환
   const slugPath = slug.join('/');
-  const metadata = getMdxMetadata(locale, `${category}/${slugPath}`);
+  const pageData = getMdxPageData(locale, `${category}/${slugPath}`);
 
-  if (!metadata) {
+  if (!pageData) {
     return <div>페이지를 찾을 수 없습니다.</div>;
   }
 
-  // metadata.content 확인
-  if (!metadata.content) {
+  // pageData.content 확인
+  if (!pageData.content) {
     console.log('콘텐츠가 비어있습니다');
     return <div>페이지 콘텐츠를 불러오는데 실패했습니다.</div>;
   }
 
-  let headings = await getHeadingsFromContent(metadata.content);
+  let headings = await getHeadingsFromContent(pageData.content);
 
   return (
     <MathPageLayout
       locale={locale}
-      metadata={metadata}
+      pageData={pageData}
       category={category}
       headings={headings}
     />
@@ -46,9 +54,8 @@ export default async function Page({ params }: { params: PageParams }) {
 // 정적 경로 생성
 export async function generateStaticParams() {
   const { getAllSlugs } = await import('@/lib/mdxParsing');
-  const locales = ['en', 'ko']; // 언어별로
 
-  const allParams: any = [];
+  const allParams: PageParams[] = [];
 
   for (const locale of locales) {
     const slugs = getAllSlugs(locale);
