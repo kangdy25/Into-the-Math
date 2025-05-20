@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ArrowUpToLine, Check, Files, MessageSquareText } from 'lucide-react';
 
 const TOCButton = () => {
+  const buttonStyle =
+    'relative flex justify-center items-center w-9 h-9 p-2 border rounded-md cursor-pointer';
   const [copied, setCopied] = useState(false);
 
   const handleCopyUrl = async () => {
@@ -14,32 +16,31 @@ const TOCButton = () => {
     }
   };
 
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleScrollToComments = () => {
+    const commentsSection = document.getElementById('comments');
+    if (commentsSection) {
+      commentsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="absolute bottom-[-50px] flex flex-row justify-start gap-2">
       {/* Top 버튼 추가 */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="flex justify-center items-center w-9 h-9 p-2 border rounded-md cursor-pointer"
-      >
+      <button onClick={handleScrollToTop} className={buttonStyle}>
         <ArrowUpToLine />
       </button>
+
       {/* 댓글 이동 버튼 추가 */}
-      <button
-        onClick={() => {
-          const commentsSection = document.getElementById('comments');
-          if (commentsSection) {
-            commentsSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
-        className="flex justify-center items-center w-9 h-9 p-2 border rounded-md cursor-pointer"
-      >
+      <button onClick={handleScrollToComments} className={buttonStyle}>
         <MessageSquareText />
       </button>
+
       {/* URL 복사 버튼 추가 */}
-      <button
-        onClick={handleCopyUrl}
-        className="flex justify-center items-center w-9 h-9 p-2 border rounded-md cursor-pointer"
-      >
+      <button onClick={handleCopyUrl} className={buttonStyle}>
         {/* 복사 전: Files 아이콘, 복사 후: Check 아이콘 */}
         {copied ? <Check /> : <Files />}
         {/* 복사 완료 메시지 */}

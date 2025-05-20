@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Heading } from '@/lib/mdxParsing';
-import Link from 'next/link';
 import TOCButton from './TOCButton';
 
 type TOCProps = {
@@ -14,6 +13,8 @@ export default function TOC({ headings }: TOCProps) {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (headings.length === 0) return;
+
       const offsets = headings.map((heading) => {
         const el = document.getElementById(heading.id);
         if (!el) return { id: heading.id, top: Infinity };
@@ -22,8 +23,8 @@ export default function TOC({ headings }: TOCProps) {
 
       // 화면 최상단과 가장 가까운 heading 찾기
       const active = offsets
-        .filter((o) => o.top <= 100) // 100px 위에 있는 것들 중
-        .sort((a, b) => b.top - a.top)[0]; // 가장 가까운 거
+        .filter((o) => o.top <= window.innerHeight / 8)
+        .sort((a, b) => b.top - a.top)[0];
 
       if (active) {
         setActiveId(active.id);
@@ -36,7 +37,7 @@ export default function TOC({ headings }: TOCProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [headings]);
+  }, []);
 
   // 링크 클릭 시 스크롤 처리를 위한 함수
   const handleLinkClick = (
@@ -77,9 +78,10 @@ export default function TOC({ headings }: TOCProps) {
                 heading.depth === 1 ? '' : 'ml-4'
               } transition-all duration-200`}
             >
-              <Link
+              <a
                 href={`#${heading.id}`}
                 onClick={(e) => handleLinkClick(e, heading.id)}
+                aria-current={activeId === heading.id ? 'true' : undefined}
                 className={`text-sm font-pretendard-light hover:text-indigo-400 cursor-pointer ${
                   activeId === heading.id
                     ? 'text-indigo-400 font-bold'
@@ -87,7 +89,7 @@ export default function TOC({ headings }: TOCProps) {
                 }`}
               >
                 {heading.text}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
