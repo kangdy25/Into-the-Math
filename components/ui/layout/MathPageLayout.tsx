@@ -39,9 +39,9 @@ export default function MathPageLayout({
     <ClientLayout>
       <Header />
       <SidebarWrapper locale={locale} category={category} />
-      <div className="flex flex-1 relative top-[81px] xl:ml-[350px] justify-center">
-        <div className="max-w-[1000px] w-full px-6 md:px-16 py-10">
-          <h1 className="font-pretendard-extrabold mt-8 mb-16 text-center text-5xl sm:text-6xl ">
+      <main className="flex flex-1 relative top-[81px] xl:ml-[350px] justify-center">
+        <section className="max-w-[1000px] w-full px-6 md:px-16 py-10">
+          <h1 className="font-pretendard-extrabold mt-8 mb-16 text-center text-5xl sm:text-6xl">
             {pageData.title ?? '제목 없음'}
           </h1>
           <MDXRemote
@@ -66,12 +66,11 @@ export default function MathPageLayout({
           <div id="comments">
             <Comments />
           </div>
-        </div>
-        {/* TOC 사이드바 */}
+        </section>
         <aside className="hidden lg:block w-[350px] sticky top-[100px] h-screen overflow-auto">
           <TOC headings={headings} />
         </aside>
-      </div>
+      </main>
     </ClientLayout>
   );
 }

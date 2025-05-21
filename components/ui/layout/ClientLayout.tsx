@@ -1,26 +1,28 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
+
+// 레이아웃 자식 컴포넌트에 전달할 props 타입 정의
+export interface LayoutChildProps {
+  isMobile: boolean;
+  isSidebarOpen: boolean;
+  toggleSidebar?: () => void;
+}
 
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
   useEffect(() => {
     const checkScreenSize = () => {
       const mobile = window.innerWidth <= 1280;
       setIsMobile(mobile);
-
       // 모바일 화면일 때 사이드바 자동으로 닫기
-      if (mobile) {
-        setIsSidebarOpen(false);
-      } else {
-        setIsSidebarOpen(true);
-      }
+      setIsSidebarOpen(!mobile);
     };
 
     checkScreenSize();
@@ -41,12 +43,14 @@ export default function ClientLayout({
   let headerWithProps = firstChild;
 
   if (React.isValidElement(firstChild) && typeof firstChild.type !== 'string') {
-    // 사용자 정의 컴포넌트인 경우에만 props 전달
-    headerWithProps = React.cloneElement(firstChild, {
-      isMobile,
-      isSidebarOpen,
-      toggleSidebar,
-    } as any);
+    headerWithProps = React.cloneElement(
+      firstChild as ReactElement<Partial<LayoutChildProps>>,
+      {
+        isMobile,
+        isSidebarOpen,
+        toggleSidebar,
+      },
+    );
   }
 
   // 나머지 컴포넌트들에게도 필요한 props 전달
@@ -54,11 +58,13 @@ export default function ClientLayout({
     childrenArray.slice(1),
     (child) => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
-        // 사용자 정의 컴포넌트인 경우에만 props 전달
-        return React.cloneElement(child, {
-          isMobile,
-          isSidebarOpen,
-        } as any);
+        return React.cloneElement(
+          child as ReactElement<Partial<LayoutChildProps>>,
+          {
+            isMobile,
+            isSidebarOpen,
+          },
+        );
       }
       return child; // DOM 요소는 그대로 반환
     },
