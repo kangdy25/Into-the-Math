@@ -1,17 +1,43 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect } from 'react';
+import Link from 'next/link';
+import { StaticImageData } from 'next/image';
+
+interface PageMeta {
+  slug: string;
+  title: string;
+}
+
+interface Subject {
+  name: string;
+  eng: string;
+  path: string;
+  slug: string;
+  icon: StaticImageData;
+  descriptionKo: string;
+  descriptionEng: string;
+}
 
 interface ClientSidebarProps {
   locale: 'en' | 'ko';
   category: string;
-  currentSubject: any;
-  filteredCategories: [string, any[]][];
+  currentSubject?: Subject;
+  filteredCategories: [string, PageMeta[]][];
   displayNameMap: Record<string, string>;
   translateNames: Record<string, { en: string; ko: string }>;
   isMobile?: boolean;
   isSidebarOpen?: boolean;
+}
+
+// 모바일에서 사이드바 열리면 배경 스크롤 막기
+function useBodyScrollLock(lock: boolean) {
+  useEffect(() => {
+    document.body.style.overflow = lock ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lock]);
 }
 
 export default function ClientSidebar({
@@ -24,21 +50,21 @@ export default function ClientSidebar({
   isMobile = false,
   isSidebarOpen = true,
 }: ClientSidebarProps) {
-  // 모바일에서 사이드바 열리면 배경 스크롤 막기
-  useEffect(() => {
-    if (isMobile && isSidebarOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobile, isSidebarOpen]);
+  const shouldLockScroll = isMobile && isSidebarOpen;
+  useBodyScrollLock(shouldLockScroll);
+
+  const getTranslatedCategoryName = (key: string) => {
+    const fallback =
+      key
+        .split('/')
+        .pop()
+        ?.replace(/\.mdx$/, '') ?? '';
+    const displayName = displayNameMap[key]?.split('/').pop() ?? fallback;
+    return translateNames[displayName]?.[locale] ?? displayName;
+  };
 
   return (
     <>
-      {/* 사이드바 */}
       <aside
         style={{
           scrollbarColor: ' #777 #333 ',
@@ -66,40 +92,27 @@ export default function ClientSidebar({
         </Link>
 
         <ul>
-          {filteredCategories.map(([categoryKey, pages]) => {
-            const lastFolder =
-              displayNameMap[categoryKey]?.split('/').pop() ??
-              categoryKey.split('/').pop();
-
-            const cleanLastFolder = lastFolder?.replace(/\.mdx$/, '') ?? '';
-
-            // 번역 이름 가져오기
-            const translatedCategoryName =
-              cleanLastFolder && translateNames[cleanLastFolder]?.[locale];
-
-            return (
-              <li key={categoryKey}>
-                <h3 className="font-pretendard-medium text-xl my-5 pl-2 pt-3 dark:text-slate-300">
-                  {translatedCategoryName}
-                </h3>
-                <ul>
-                  {pages.map(({ slug, title }) => (
-                    <li
-                      key={slug}
-                      className="flex justify-between font-pretendard-light py-2 pl-6 border-l-2 my-0.5 hover:text-indigo-400 hover:border-indigo-400"
-                    >
-                      <Link href={`/${slug}`}>{title}</Link>
-                      <span className="mr-6">&gt;</span>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            );
-          })}
+          {filteredCategories.map(([categoryKey, pages]) => (
+            <li key={categoryKey}>
+              <h3 className="font-pretendard-medium text-xl my-5 pl-2 pt-3 dark:text-slate-300">
+                {getTranslatedCategoryName(categoryKey)}
+              </h3>
+              <ul>
+                {pages.map(({ slug, title }) => (
+                  <li
+                    key={slug}
+                    className="flex justify-between font-pretendard-light py-2 pl-6 border-l-2 my-0.5 hover:text-indigo-400 hover:border-indigo-400"
+                  >
+                    <Link href={`/${slug}`}>{title}</Link>
+                    <span className="mr-6">&gt;</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
         </ul>
       </aside>
 
-      {/* 모바일 오버레이 */}
       {isMobile && isSidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-30 top-[81px] opacity-70" />
       )}
