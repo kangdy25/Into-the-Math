@@ -1,6 +1,7 @@
-import { getMdxPageData, getHeadingsFromContent } from '@/lib/mdxParsing';
 import { getSubjectBySlug } from '@/constants/subject';
 import MathPageLayout from '@/components/ui/layout/MathPageLayout';
+import getHeadingsFromContent from '@/lib/getHeadings';
+import { getMdxPageData } from '@/lib/metadata';
 
 export default async function Page({
   params,

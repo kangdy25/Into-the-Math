@@ -1,6 +1,7 @@
-import { getMdxPageData, getHeadingsFromContent } from '@/lib/mdxParsing';
-import { getSubjectBySlug } from '@/constants/subject';
 import MathPageLayout from '@/components/ui/layout/MathPageLayout';
+import { getSubjectBySlug } from '@/constants/subject';
+import { getMdxPageData } from '@/lib/metadata';
+import getHeadingsFromContent from '@/lib/getHeadings';
 
 const locales = ['en', 'ko'] as const;
 
@@ -53,7 +54,7 @@ export default async function Page({
 
 // 정적 경로 생성
 export async function generateStaticParams() {
-  const { getAllSlugs } = await import('@/lib/mdxParsing');
+  const { getAllSlugs } = await import('@/lib/getAllSlugs');
 
   const allParams: PageParams[] = [];
 

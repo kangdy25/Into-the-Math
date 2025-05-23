@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Heading } from '@/lib/mdxParsing';
 import TOCButton from './TOCButton';
+import type { Heading } from '@/lib/getHeadings';
 
 type TOCProps = {
   headings: Heading[];

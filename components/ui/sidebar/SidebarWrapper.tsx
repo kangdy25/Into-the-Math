@@ -1,7 +1,7 @@
 import ClientSidebar from './ClientSidebar';
-import { getAllMdxMetadata } from '@/lib/mdxParsing';
 import subjects from '@/constants/subject';
 import { translateNames } from '@/constants/translateNames';
+import { getAllMdxMetadata } from '@/lib/metadata';
 
 interface SidebarWrapperProps {
   locale: 'en' | 'ko';
