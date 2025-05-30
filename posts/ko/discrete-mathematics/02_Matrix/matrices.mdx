@@ -1,0 +1,153 @@
+---
+title: '행렬의 종류'
+date: 2025-05-30
+category: '2. 기본 구조'
+order: 2
+---
+
+# 여러 가지 행렬
+
+지금부터 여러 종류의 행렬들에 대해서 알아보도록 하겠습니다.
+
+<br />
+
+## 정방 행렬
+
+<Callout title="정방 행렬 (정의)">
+  행과 열의 수가 $n$으로 같은 행렬을 $n$차 정방 행렬이라고 한다.
+</Callout>
+이때, 행 또는 열의 개수를 “정방 행렬의 차수”라고 하며, $n$차 정방 행렬에서 대각선상에
+위치한 원소, $a_{ii}(i = 1, \ 2, \ 3, \cdots, \ n)$를 “주대각 원소”라고 합니다.{' '}
+
+<br />
+
+## 단위 행렬
+
+단위 행렬은 항등 행렬이라고도 불립니다.
+
+<Callout title="단위 행렬 (정의)">
+  주대각 원소들은 모두 $1$이고, 주대각 원소를 제외한 나머지 원소들은 모두 $0$인
+  정방 행렬을 단위 행렬 또는 항등 행렬이라고 한다.
+
+  <BlockMath>$$ \begin{pmatrix} 1 & 0 \\ 0 & 1
+\end{pmatrix}, \ \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+\end{pmatrix} $$</BlockMath>
+</Callout>
+
+<br />
+
+## 대각 행렬
+
+<Callout title="대각 행렬 (정의)">
+  주대각 원소를 제외한 나머지 원소가 모두 $0$인 행렬을 대각 행렬이라고 한다.
+
+  <BlockMath>$$ \begin{pmatrix} 2 & 0 \\ 0 & 3
+\end{pmatrix}, \ \begin{pmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 4
+\end{pmatrix} $$</BlockMath>
+</Callout>
+
+<br />
+
+## 스칼라 행렬
+
+<Callout title="스칼라 행렬 (정의)">
+  주대각 원소들이 모두 같은 값을 갖는 대각 행렬을 스칼라 행렬이라고 한다.
+
+  <BlockMath>$$ \begin{pmatrix} 3 & 0 \\ 0 & 3
+\end{pmatrix}, \ \begin{pmatrix} 5 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 5
+\end{pmatrix} $$</BlockMath>
+</Callout>
+
+<br />
+
+## 전치 행렬
+
+<Callout title="전치 행렬 (정의)">
+  행렬 $A$가 임의의 $m \times n$ 행렬일 때, $A$의 행과 열을 바꾼 $n \times m$
+  행렬을 전치행렬이라고 한다. $A$의 전치행렬은 $A^T$라고 표현한다.
+</Callout>
+
+<br />
+
+## 대칭 행렬
+
+<Callout title="대칭 행렬 (정의)">
+  어떤 정방 행렬이 자신과 자신의 전치 행렬이 같으면 그 행렬을 대칭 행렬이라고
+  한다. 행렬 $A$가 대칭 행렬이면 $A = A^T$를 만족한다.
+</Callout>
+
+<br />
+
+## 띠 행렬
+
+<Callout title="띠 행렬 (정의)">
+  주대각 원소와 평행한 몇 줄의 원소들만 값을 갖고, 그 이외의 모든 원소들은 $0$인
+  행렬을 띠 행렬이라고 한다.
+  <BlockMath>
+    $$ \begin{pmatrix} 5 & 4 & 0 \\ 6 & 7 & 2 \\ 0 & 9 & 3 \end{pmatrix}, \begin{pmatrix} 5 & 4 & 0 & 0 \\ 0 & 7 & 2 & 0 \\ 0 & 0 & 3 & 8 \\ 0 & 0 & 0 & 9\end{pmatrix} $$
+  </BlockMath>
+</Callout>
+
+<br />
+
+## 삼각 행렬
+상삼각 행렬이거나 하삼각 행렬을 간단하게 삼각 행렬이라고 합니다.
+<Callout title="상삼각 행렬 (정의)">
+  주대각 원소의 아래쪽에 있는 모든 원소들이 $0$인 정방 행렬을 상삼각 행렬이라고 한다.
+  <BlockMath>
+    $$ \begin{pmatrix} 3 & 5 \\ 0 & 4 \end{pmatrix}, \ \begin{pmatrix} 5 & 6 & 7 \\ 0 & 8 & 9 \\ 0 & 0 & 3 \end{pmatrix}$$
+  </BlockMath>
+</Callout>
+
+<Callout title="하삼각 행렬 (정의)">
+  주대각 원소의 위쪽에 있는 모든 원소들이 $0$인 정방 행렬을 하삼각 행렬이라고 한다.
+  <BlockMath>
+    $$ \begin{pmatrix} 3 & 0 \\ 5 & 4 \end{pmatrix}, \ \begin{pmatrix} 5 & 0 & 0 \\ 6 & 7 & 0 \\ 8 & 9 & 3 \end{pmatrix} $$
+  </BlockMath>
+</Callout>
+
+<br />
+
+## 부울 행렬
+
+<Callout title="부울 행렬 (정의)">
+  행렬의 원소들이 $0$이거나 $1$인 $m \times n$ 행렬을 부울 행렬이라고 한다.
+</Callout>
+
+부울 행렬의 연산과 부울 연산은 다른데, 부울 행렬에서 사용하는 연산자는 “접합”, “교합”, “부울곱”입니다.
+
+<Callout title="접합 (정의)">
+  $A = (a_{ij}), \ B = (b_{ij})$인 $m \times n$ 부울 행렬이 존재할 때, $A \vee B = C = (C_{ij})$를 $A$와 $B$의 접합이라고 하며, 다음과 같이 정의한다.
+
+  <BlockMath>
+    $$ (c_{ij}) =  \begin{cases} 1, \quad a_{ij}= 1 \text{ 혹은 } b_{ij} = 1 \text{ 인 } \ \text{ 경우 }  \\ 0, \quad a_{ij} \text{ 와 } \ b_{ij} \text{ 가 } \text{ 모두 } \ 0 \ \text{ 인 } \ \text{ 경우 }  \\ \end{cases} $$
+  </BlockMath>
+</Callout>
+
+<Callout title="교합 (정의)">
+  $A = (a_{ij}), \ B = (b_{ij})$인 $m \times n$ 부울 행렬이 존재할 때,
+  $A \wedge B = D = (d_{ij})$를 $A$와 $B$의 교합이라고 하며, 다음과 같이 정의한다.
+  
+  <BlockMath>
+    $$ (d_{ij}) = \begin{cases} 1, \quad a_{ij} \text {와 } \ b_{ij} \text{가 } \text{ 모두 }  \ 1 \text{인} \text{ 경우 }  \\ 0, \quad a_{ij}= 0 \text{ 혹은 } b_{ij} = 0 \text{인} \text{ 경우 }  \end{cases} $$
+  </BlockMath>
+</Callout>
+
+<Callout title="부울곱 (정의)">
+$E \odot F = G = (g_{ij})$를 $E$와 $F$의 부울곱이라고 한다. 행렬 $E = (e_{ik})$가 $m \times p$ 부울 행렬이고 $F = (f_{ij})$가 $p \times n$ 부울 행렬이면 $E$와 $F$의 부울곱은 $m\times n$ 부울 행렬이 되고 다음과 같이 정의한다.
+  
+  <BlockMath>
+    $$(g_{ij}) = \begin{cases} 1, \quad \text{어떤} \ k(1 \leq k \leq p) \text{ 에} \text{ 대해 }  \ a_{ij}= 1,\ b_{ij} = 1 \text{인} \text{ 경우 } \\ 0, \quad \text{ 그} \text{ 외에 } \end{cases} $$
+    </BlockMath>
+</Callout>
+
+<Callout type="tip" title="부울 행렬의 성질 (정리)">
+  $A, \ B, \ C$가 부울 행렬일 때, 다음 성질이 성립한다.
+
+  - $A \vee B = B \vee A \\ A \wedge B = B \wedge A$   (교환법칙)
+  - $(A \vee B ) \vee C = A \vee (B\vee C) \\ (A \wedge B ) \wedge C = A \wedge (B\wedge C)$ (결합법칙)
+  - $A \wedge (B\vee C) = (A \wedge B) \vee (A \wedge C) \\ A \vee (B\wedge C) = (A \vee B) \wedge (A \vee C)$  (분배법칙)
+  - $A \odot (B \odot C)= (A \odot B) \odot C$ (결합법칙)
+</Callout>
+
+---
