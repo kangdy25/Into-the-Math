@@ -52,8 +52,8 @@ const Callout = ({ type = 'default', title, children }: CalloutProps) => {
       <div className="">
         <span className="text-md mr-2">{icon}</span>
         <span className={`text-lg font-pretendard-bold ${color}`}>{info}</span>
-        <span className={`text-md mx-3 font-pretendard-bold ${color}`}>
-          {title}
+        <span className={`text-md mx-3 font-pretendard`}>
+          "{title}"
         </span>
       </div>
       <div className="font-pretendard dark:border-white leading-[1.75] text-base w-full text-slate-900 dark:text-white pr-3 ">
